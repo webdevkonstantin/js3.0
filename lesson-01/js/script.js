@@ -1,44 +1,30 @@
-console.log(4/0);
-
-var und;
-console.log(und);
-
-var obj = {
-	name: "John",
-	age: 25,
-	isMarried: false
+var budget = prompt("Ваш бюджет на месяц?", 30000);
+var dailyBudget = parseInt(budget)/30;
+var shopName = prompt("Название вашего магазина?", "Пряничная");
+var mainList = {
+	budget : budget,
+	shopName : shopName,
+	shopGoods : [],
+	employers : [
+		{
+			firstName: "Vasya",
+			lastName : "Pupkin",
+			age : 45,
+			position : "Seller"
+		},
+        {
+            firstName: "Kolya",
+            lastName : "Vasichkin",
+            age : 30,
+            position : "Manager"
+        }
+	],
+	open : true
 };
 
-console.log(obj);
-console.log(obj.name);
+for (var i=0; i<3; i++) {
+    mainList.shopGoods.push(prompt("Какой тип товаров будем продавать?", "Пряники"))
+}
+console.log(mainList);
 
-var arr = ['plum', 'orange', 'apple'];
-
-// alert("Hello!")
-// confirm("message"?"Ку": "DOMString")
-var answer = +prompt("Вам есть 18?", "18");
-
-console.log(typeof(answer));
-console.log(typeof(null));
-console.log(typeof(arr));
-
-var incr = 10;
-var decr = 10;
-
-// incr++;
-// decr--;
-
-console.log(incr++);
-console.log(decr--);
-
-console.log(5%3);
-
-console.log("10" === 10); // сравнение типов
-console.log("10" == 10); // сравнение значений
-
-var isChecked = true;
-var isClosed = true;
-
-console.log(isClosed && isChecked); // логическое И
-console.log(!isClosed && isChecked); // Инверсия первого значения и логическое И
-console.log(isClosed || !isChecked); // логическое ИЛИ
+alert('Ваш бюджет на 1 день составит: ' + dailyBudget.toFixed(2));
