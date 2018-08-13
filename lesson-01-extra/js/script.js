@@ -22,4 +22,4 @@ powResultStr = powResult.toString().split('');
 for (var j = 0; j < 2; j++){
     firstTwoNum += powResultStr[j];
 }
-alert("Первые 2 цифры числа " + powResult + " :" + firstTwoNum);
+alert("Первые 2 цифры числа " + powResult + " : " + firstTwoNum);
