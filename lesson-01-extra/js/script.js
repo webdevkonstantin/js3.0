@@ -17,9 +17,9 @@ console.log("Результат возведения числа " + multiplicati
 
 // преобразуем полученное число в строку, а затем в массив
 powResultStr = powResult.toString().split('');
-// в цикле записываем первые две цифры
 
+// в цикле записываем первые две цифры
 for (var j = 0; j < 2; j++){
     firstTwoNum += powResultStr[j];
 }
-console.log("Первые 2 цифры числа " + powResult + " :", firstTwoNum);
+alert("Первые 2 цифры числа " + powResult + " :" + firstTwoNum);
