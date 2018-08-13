@@ -8,7 +8,7 @@ for (let i = 0; i < week.length; i++) {
 	// if ( week[i] === 'Суббота' || week[i] === 'Воскресенье' ) {
 	if ( i === 5 || i === 6 ) {
 		child.innerHTML = '<strong>' + week[i] + '</strong>';
-	} else if (i === date.getDay()-1) {
+	} else if ( i === date.getDay() - 1 ) {
 		child.innerHTML = '<em>' + week[i] + '</em>';
 	}
 	else child.innerHTML = week[i];
