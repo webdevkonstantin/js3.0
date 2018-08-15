@@ -40,13 +40,13 @@ chooseGoods();
 
 function workTime(time) {
     if ( time < 0 ) {
-        console.log("Такого не может быть!")
+        console.log("Такого не может быть!");
     } else if ( time > 8 && time < 20 ) {
-        console.log("Время работать!")
+        console.log("Время работать!");
     } else if ( time < 24 ) {
-        console.log("Уже слишком поздно!")
+        console.log("Уже слишком поздно!");
     } else {
-        console.log("В сутках только 24 часа!")
+        console.log("В сутках только 24 часа!");
     }
 }
 workTime(18);
