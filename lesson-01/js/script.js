@@ -23,7 +23,7 @@ var mainList = {
 };
 
 for (var i=0; i<3; i++) {
-    mainList.shopGoods.push(prompt("Какой тип товаров будем продавать?", "Пряники"))
+    mainList.shopGoods.push(prompt("Какой тип товаров будем продавать?", "Пряники"));
 }
 console.log(mainList);
 
