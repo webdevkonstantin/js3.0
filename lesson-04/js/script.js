@@ -99,6 +99,12 @@ let mainList = {
         //     document.write(i + ". " + item + "<br>");
         // });
         return mainList.shopItems;
+    },
+    showMainList : function showMainList() {
+        console.log('Наш магазин включает в себя: ');
+        for ( let key in mainList ) {
+            console.log('Свойство ' + key + ' имеет значение ' + mainList[key]);
+        }
     }
 };
 
