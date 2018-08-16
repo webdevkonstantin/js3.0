@@ -5,9 +5,8 @@ function getFriendlyNumbers(start, end) {
             let num1 = getDivisorsSum(i);
             let num2 = getDivisorsSum(num1);
 
-            if ( num1 !== num2 && num1 < num2 && isFriendly(num1, num2) ) {
-                let nums = [];
-                nums.push(num1,num2);
+            if ( num1 !== num2 && num1 < num2 && num2 > start && isFriendly(num1, num2) ) {
+                 let nums = [num1, num2];
 
                 if ( !inArray(friendlyArr, nums) ) {
                     friendlyArr.push(nums);
@@ -18,8 +17,10 @@ function getFriendlyNumbers(start, end) {
 
     return friendlyArr;
 }
+//console.log('getFriendlyNumbers(start, end): ', getFriendlyNumbers(1, 100000));
 
-// Сравниваем 2 массива путем преобразования их в строку
+// Ищем в arr1 массив arr2 
+// перебираем все массивы из arr1 и сравниваем с arr2 путем преобразования их в строку
 function inArray(arr1, arr2) {
     let inArray = false;
     for ( let i = 0; i < arr1.length; i++ ) {
