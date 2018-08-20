@@ -9,8 +9,6 @@ var now = new Date(),
     resultDaysLbl = document.createElement('label'),
     btn = document.createElement('button');
 
-document.body.appendChild(div);
-
 firstDate.setAttribute("type", "date");
 secondDate.setAttribute("type", "date");
 resultDays.setAttribute("type", "text");
@@ -26,10 +24,10 @@ resultDaysLbl.appendChild(resultDays);
 
 btn.textContent = 'Вычислить';
 
+document.body.appendChild(div);
 document.body.appendChild(firstDateLbl);
 document.body.appendChild(secondDateLbl);
 document.body.appendChild(resultDaysLbl);
-
 document.body.appendChild(btn);
 
 btn.addEventListener("click", function(){
