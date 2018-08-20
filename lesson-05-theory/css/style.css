@@ -1,0 +1,83 @@
+button {
+    padding: 5px 25px;
+    background-color: #000;
+    color: #ffffff;
+    border-radius: 5px;
+    border: 1px solid #000
+}
+
+.box {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    height: 45px;
+    width: 45px;
+    background-color: green;
+}
+
+.circle {
+    margin-top: 5px;
+    height: 45px;
+    width: 45px;
+    background-color: blue;
+    border-radius: 100%;
+    /*display: inline-block;*/
+}
+
+.heart{
+    margin-top: 10px;
+    position: relative;
+    width: 100px;
+    height: 90px;
+    display: inline-block;
+    /*float: left;*/
+}
+.heart:before,
+.heart:after{
+    position: absolute;
+    content: "";
+    left: 50px;
+    top: 0;
+    width: 50px;
+    height: 80px;
+    background: #fc2e5a;
+
+    -moz-border-radius: 50px 50px 0 0;
+    border-radius: 50px 50px 0 0;
+
+    -webkit-transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    -o-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+
+    -webkit-transform-origin: 0 100%;
+    -moz-transform-origin: 0 100%;
+    -ms-transform-origin: 0 100%;
+    -o-transform-origin: 0 100%;
+    transform-origin: 0 100%;
+}
+.heart:after{
+    left: 0;
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    transform: rotate(45deg);
+    -webkit-transform-origin: 100% 100%;
+    -moz-transform-origin: 100% 100%;
+    -ms-transform-origin: 100% 100%;
+    -o-transform-origin: 100% 100%;
+    transform-origin :100% 100%;
+}
+
+.black {
+    margin-top: 10px;
+    padding: 5px 15px;
+    margin-bottom: 10px;
+    text-align: center;
+    line-height: 45px;
+    height: 45px;
+    width: 120px;
+    background-color: black;
+    color: white;
+}
