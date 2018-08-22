@@ -125,7 +125,8 @@ body {
 .main-functions .choose-items,
 .main-functions .time,
 .main-functions .count-budget,
-.main-functions .hire-employers {
+.main-functions .hire-employers,
+.main-functions .goods-price {
   margin-top: 5px;
   text-align: center;
   font-size: 20px;
@@ -145,7 +146,8 @@ body {
 }
 .main-functions .choose-item,
 .main-functions .time-value,
-.main-functions .count-budget-value {
+.main-functions .count-budget-value,
+.main-functions .price-item-value {
   display: block;
   margin: 0 auto;
   margin-top: 10px;
@@ -156,7 +158,8 @@ body {
 .main-functions .time-value {
   width: 30%;
 }
-.main-functions .count-budget-value {
+.main-functions .count-budget-value,
+.main-functions .price-item-value {
   width: 30%;
   display: inline-block;
   margin-left: 25%;
