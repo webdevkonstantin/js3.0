@@ -1,6 +1,5 @@
-var now = new Date(),
-    div = document.createElement('div');
-    div.textContent = formatDate(now) + ' ' + getWeekDay(now),
+let now = new Date(),
+    div = document.createElement('div'),
     firstDate = document.createElement('input'),
     firstDateLbl = document.createElement('label'),
     secondDate = document.createElement('input'),
@@ -9,6 +8,7 @@ var now = new Date(),
     resultDaysLbl = document.createElement('label'),
     btn = document.createElement('button');
 
+div.textContent = formatDate(now) + ' ' + getWeekDay(now);
 firstDate.setAttribute("type", "date");
 secondDate.setAttribute("type", "date");
 resultDays.setAttribute("type", "text");
