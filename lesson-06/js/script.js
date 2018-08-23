@@ -97,7 +97,7 @@ chooseItem.addEventListener('input', () => {
         }
     } else {
         chooseItem.value = '';
-        alert('Магазин закрыт!')
+        alert('Магазин закрыт!');
     }
 });
 
@@ -128,7 +128,7 @@ for ( let i = 0; i < employers.length; i++) {
         }
         else {
             employers[i].value = '';
-            alert('Магазин закрыт!')
+            alert('Магазин закрыт!');
         }
     });
 }
@@ -156,7 +156,7 @@ priceValue.addEventListener('input', function () {
         }
     } else {
         priceValue.value = '';
-        alert('Магазин закрыт!')
+        alert('Магазин закрыт!');
     }
 });
 
