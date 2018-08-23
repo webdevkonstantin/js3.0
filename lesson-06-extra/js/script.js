@@ -40,7 +40,7 @@ openBtn.addEventListener('click', () => {
     timeValue.disabled = false;
     timeValue.value = formatTime(new Date());
     changeTime();
-    open();
+    //open();
 });
 
 // Проверяем ввод значений в поля ввода категории товаров
@@ -74,9 +74,6 @@ goodsBtn.addEventListener('click', () => {
             mainList.shopGoods[i] = good.trim();
             goodsValue.textContent = mainList.shopGoods;
             goodsItem[i].value = '';
-        } else {
-            i--;
-            console.log("Тип товара не был добавлен! Введите еще раз!");
         }
     }
 });
@@ -113,7 +110,8 @@ budgetBtn.addEventListener('click', () => {
 // и проверяем открыт ли магазин
 for ( let i = 0; i < employers.length; i++) {
     employers[i].addEventListener('input', function () {
-
+        var res = /[^а-яА-Я]/g.exec(this.value);
+        this.value = this.value.replace(res, '');
         if (mainList.open) {
             if (employers[i].value) {
                 employersBtn.disabled = false;
@@ -136,6 +134,7 @@ for ( let i = 0; i < employers.length; i++) {
 
 // Нажатие кнопки "Нанять"
 employersBtn.addEventListener('click', () => {
+    employersValue.textContent = '';
     for ( let i = 0; i < employers.length; i++) {
         let employerName = employers[i].value;
         mainList.employers[i] = employerName;
