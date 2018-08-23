@@ -26,39 +26,24 @@ let openBtn         = document.getElementById('open-btn'),
 budgetField.disabled = true;
 
 // Делаем все кнопки и ввод времени по умолчанию недоступными
-goodsBtn.disabled = true;
-budgetBtn.disabled = true;
-goodsDisabled(true);
-chooseItem.disabled = true;
+close();
 timeValue.disabled = true;
-employersDisabled(true);
-employersBtn.disabled = true;
-discountBtn.disabled = true;
 
 // нажатие кнопки "Открыть магазин"
-function open() {
-    openBtn.addEventListener('click', () => {
-        while (isNaN(budget) || budget === '' || budget == null) {
-            budget = prompt("Ваш бюджет на месяц?", "70000");
-        }
+openBtn.addEventListener('click', () => {
+    while (isNaN(budget) || budget === '' || budget == null) {
+        budget = prompt("Ваш бюджет на месяц?", "70000");
+    }
+    budgetValue.textContent = budget + ' рублей';
+    nameValue.textContent = prompt("Название вашего магазина?", "Пиченька").toUpperCase();
+    mainList.shopName = nameValue.value;
+    timeValue.disabled = false;
+    timeValue.value = formatTime(new Date());
+    changeTime();
+    open();
+});
 
-        budgetValue.textContent = budget + ' рублей';
-        nameValue.textContent = prompt("Название вашего магазина?", "Пиченька").toUpperCase();
-        mainList.shopName = nameValue.value;
-        mainList.open = true;
-        chooseItem.disabled = false;
-        budgetBtn.disabled = false;
-        timeValue.disabled = false;
-        timeValue.value = formatTime(new Date());
-        changeTime();
-        goodsDisabled(false);
-        employersDisabled(false);
-        discountBtn.disabled = false;
-        console.log(timeValue.value);
-    });
 
-}
-open();
 
 // Проверяем ввод значений в поля ввода категории товаров
 // и проверяем открыт ли магазин
@@ -84,12 +69,13 @@ for (let i = 0; i < goodsItem.length; i++) {
 // нажатие кнопки "Утвердить"
 goodsBtn.addEventListener('click', () => {
     for (let i = 0; i < goodsItem.length; i++) {
-        let answer = goodsItem[i].value;
+        let good = goodsItem[i].value;
 
-        if ( (typeof answer) === 'string' && (typeof answer) !== null  && answer.length < 50) {
-            console.log("Добавлена категория товара: ", answer);
-            mainList.shopGoods[i] = answer.trim();
+        if ( (typeof good) === 'string' && (typeof good) !== null  && good.length < 50) {
+            console.log("Добавлена категория товара: ", good);
+            mainList.shopGoods[i] = good.trim();
             goodsValue.textContent = mainList.shopGoods;
+            goodsItem[i].value = '';
         } else {
             i--;
             console.log("Тип товара не был добавлен! Введите еще раз!");
@@ -102,13 +88,17 @@ goodsBtn.addEventListener('click', () => {
 chooseItem.addEventListener('input', () => {
     let items = chooseItem.value;
 
-    if(isNaN(items) && items != '') {
-        mainList.shopItems = items.split(", ");
-        mainList.shopItems.sort();
+    if (mainList.open) {
+        if(isNaN(items) && items != '') {
+            mainList.shopItems = items.split(", ");
+            mainList.shopItems.sort();
 
-        itemsValue.textContent = mainList.shopItems;
+            itemsValue.textContent = mainList.shopItems;
+        }
+    } else {
+        chooseItem.value = '';
+        alert('Магазин закрыт!')
     }
-
 });
 
 // Ввод в поле "Сколько сейчас времени?"
@@ -118,8 +108,30 @@ timeValue.addEventListener('input', () => {
 
 // нажатие кнопки "Рассчитать"
 budgetBtn.addEventListener('click', () => {
-    if (budget) countBudgetValue.value = (budget / 30).toFixed(2);
+    if (budget) countBudgetValue.value = (budget / 30).toFixed(2) + ' рублей';
 });
+
+// Проверяем ввод значений в поля ввода имена сотрудников
+// и проверяем открыт ли магазин
+for ( let i = 0; i < employers.length; i++) {
+    employers[i].addEventListener('input', function () {
+        if (mainList.open) {
+            if (employers[i].value.trim()) employersBtn.disabled = false;
+            else {
+                let allemployers = '';
+                for (let i = 0; i < employers.length; i++) {
+                    allemployers += employers[i].value.trim();
+                }
+                console.log('allemployers: ', allemployers);
+                if (allemployers == '') employersBtn.disabled = true;
+            }
+        }
+        else {
+            employers[i].value = '';
+            alert('Магазин закрыт!')
+        }
+    });
+}
 
 // нажатие кнопки "Нанять"
 employersBtn.addEventListener('click', () => {
@@ -130,6 +142,22 @@ employersBtn.addEventListener('click', () => {
         employersValue.textContent += mainList.employers[i] + ', ';
     }
     // employersValue.textContent = ''+mainList.employers;
+});
+
+// Ввод стоимости покупки
+priceValue.addEventListener('input', function () {
+    let price = priceValue.value.trim();
+
+    if (mainList.open) {
+        if(!isNaN(price) && price != '') {
+            discountBtn.disabled = false;
+        } else {
+            discountBtn.disabled = true;
+        }
+    } else {
+        priceValue.value = '';
+        alert('Магазин закрыт!')
+    }
 });
 
 // нажатие кнопки "Получить скидку"
@@ -183,6 +211,28 @@ let mainList = {
     shopItems: []
 };
 
+function open() {
+    mainList.open = true;
+    chooseItem.disabled = false;
+    budgetBtn.disabled = false;
+    goodsDisabled(false);
+    employersDisabled(false);
+    priceValue.disabled = false;
+    console.log(timeValue.value);
+}
+
+function close() {
+    chooseItem.disabled = true;
+    budgetBtn.disabled = true;
+    goodsDisabled(true);
+    goodsBtn.disabled = true;
+    employersDisabled(true);
+    employersBtn.disabled = true;
+    priceValue.disabled = true;
+    discountBtn.disabled = true;
+    discountValue.style.backgroundColor = 'red';
+}
+
 function changeTime() {
     let time = timeValue.value,
         timeArr = time.split(':');
@@ -201,13 +251,16 @@ function changeTime() {
     }
 
     if (mainList.open === true) {
+        discountValue.textContent === ''?discountValue.style.backgroundColor = 'red':discountValue.style.backgroundColor = 'green';
         isopenValue.style.backgroundColor = 'green';
         isopenValue.style.color = 'white';
-        isopenValue.innerHTML = 'Магазин открыт'
+        isopenValue.innerHTML = 'Магазин открыт';
+        open();
     } else {
         isopenValue.style.backgroundColor = 'red';
         isopenValue.style.color = 'white';
-        isopenValue.innerHTML = 'Магазин закрыт'
+        isopenValue.innerHTML = 'Магазин закрыт';
+        close();
     }
 }
 
