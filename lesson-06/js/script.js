@@ -43,8 +43,6 @@ openBtn.addEventListener('click', () => {
     open();
 });
 
-
-
 // Проверяем ввод значений в поля ввода категории товаров
 // и проверяем открыт ли магазин
 for (let i = 0; i < goodsItem.length; i++) {
@@ -141,7 +139,6 @@ employersBtn.addEventListener('click', () => {
 
         employersValue.textContent += mainList.employers[i] + ', ';
     }
-    // employersValue.textContent = ''+mainList.employers;
 });
 
 // Ввод стоимости покупки
