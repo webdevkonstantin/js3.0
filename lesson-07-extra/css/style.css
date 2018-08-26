@@ -1,0 +1,25 @@
+.btn, button {
+  width: 100px;
+  height: 40px;
+  background-color: yellow;
+  padding: 10px;
+  color: #000;
+  border: none;
+}
+
+div {
+  width: 10px;
+  height: 10px;
+  background: orange;
+  float: left;
+}
+
+button {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+}
+
+#stop {
+  left: 200px;
+}
