@@ -1,0 +1,29 @@
+.btn, button {
+  width: 100px;
+  height: 40px;
+  background-color: yellow;
+  padding: 10px;
+  color: #000;
+  border: none;
+}
+
+.wrapper {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border: 2px solid red;
+  width: 400px;
+  height: 400px;
+  position: relative;
+}
+
+.box {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  background-color: blue;
+}
+
+.btn-block {
+  padding: 10px;
+  background-color: grey;
+}
