@@ -41,13 +41,9 @@ window.addEventListener('DOMContentLoaded', function(e) {
 
     function getTimeRemaining(endtime) {
         let time = Date.parse(endtime) - Date.parse(new Date()),
-            s = Math.floor( (t/1000) % 60 ),
-            m = Math.floor( (t/1000/60) % 60 ),
-            h = Math.floor( (t/(1000*60*60)) );
-
-        if (h.length < 2) h = '0' + h;
-        if (m.length < 2) m = '0' + m;
-        if (s.length < 2) s = '0' + s;
+            s = Math.floor( (time/1000) % 60 ),
+            m = Math.floor( (time/1000/60) % 60 ),
+            h = Math.floor( (time/(1000*60*60)) );
 
         return {
             'total' : time,
@@ -66,17 +62,21 @@ window.addEventListener('DOMContentLoaded', function(e) {
         function updateClock() {
             let t = getTimeRemaining(endtime);
 
-            hours.innerHTML = t.hours;
-            minutes.innerHTML = t.minutes;
-            seconds.innerHTML = t.seconds;
+            (t.hours < 10) ? (hours.innerHTML = '0' + t.hours) : (hours.innerHTML = t.hours);
+            (t.minutes < 10) ? (minutes.innerHTML = '0' + t.minutes) : (minutes.innerHTML = t.minutes);
+            (t.seconds < 10) ? (seconds.innerHTML = '0' + t.seconds) : (seconds.innerHTML = t.seconds);
 
             if (t.total <= 0) {
+                hours.innerHTML = '00';
+                minutes.innerHTML = '00';
+                seconds.innerHTML = '00';
+
                 clearInterval(timeInterval);
             }
         }
 
+        let timeInterval = setInterval(updateClock, 1000);
         updateClock();
-        let timeInterval = setInterval(updateClock(), 1000);
     }
 
     setClock('timer', deadline);
