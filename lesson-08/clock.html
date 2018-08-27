@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Урок №7. Часы</title>
+    <style>
+      body {
+          font-family: "Open Sans";
+          margin-top: 300px;
+          text-align: center;
+          color: #fff
+      }
+
+      #clock {
+          font-weight: 300;
+          font-size: 120px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1 id="clock">00:00:00</h1>
+    <p id="color">#000000</p>
+
+    <script>
+      let clock = document.getElementById('clock'),
+          color = document.getElementById('color');
+
+      function hexoClock() {
+          let time = new Date(),
+              h = time.getHours().toString(),
+              m = time.getMinutes().toString(),
+              s = time.getSeconds().toString();
+
+          if (h.length < 2) h = '0' + h;
+          if (m.length < 2) m = '0' + m;
+          if (s.length < 2) s = '0' + s;
+
+          let clockString = h + ':' + m + ':' + s,
+              colorString = '#' + h + m + s;
+
+          clock.textContent = clockString;
+          color.textContent = colorString;
+          document.body.style.background = colorString;
+      }
+
+      hexoClock();
+      setInterval(hexoClock, 1000);
+    </script>
+  </body>
+</html>
