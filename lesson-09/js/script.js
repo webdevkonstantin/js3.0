@@ -91,7 +91,9 @@ window.addEventListener('DOMContentLoaded', function(e) {
               hash = this.href.replace(/[^#]*(.*)/, '$1'),  // к id элемента, к которому нужно перейти
               top = document.querySelector(hash).getBoundingClientRect().top,  // отступ от окна браузера до id
               start = null;
+
           requestAnimationFrame(step);
+
           function step(time) {
               if (start === null) start = time;
               let progress = time - start,
@@ -104,5 +106,38 @@ window.addEventListener('DOMContentLoaded', function(e) {
               }
           }
       }, false);
+  }
+
+  // Modal
+  let more = document.querySelector('.more'),
+      overlay = document.querySelector('.overlay'),
+      close = document.querySelector('.popup-close'),
+      readMore = document.getElementsByClassName('description-btn');
+
+  for (let i = 0; i < readMore.length; i++) {
+      readMore[i].addEventListener('click', function () {
+          showModal.call(this);
+      });
+  }
+
+  more.addEventListener('click', function () {
+      showModal.call(this);
+  });
+
+  close.addEventListener('click', function () {
+      overlay.style.display = 'none';
+      if (more.classList.contains('more-splash')) more.classList.remove('more-splash');
+
+      for (let i = 0; i < readMore.length; i++) {
+          if (readMore[i].classList.contains('more-splash')) readMore[i].classList.remove('more-splash');
+      }
+
+      document.body.style.overflow = '';
+  });
+
+  function showModal() {
+      this.classList.add('more-splash');
+      overlay.style.display = 'block';
+      document.body.style.overflow = 'hidden';
   }
 });
