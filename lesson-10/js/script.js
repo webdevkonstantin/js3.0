@@ -62,9 +62,9 @@ window.addEventListener('DOMContentLoaded', function(e) {
       function updateClock() {
           let t = getTimeRemaining(endtime);
 
-          (t.hours < 10) ? (hours.innerHTML = `0 + ${t.hours}`) : (hours.innerHTML = t.hours);
-          (t.minutes < 10) ? (minutes.innerHTML = `0 + ${t.minutes}`) : (minutes.innerHTML = t.minutes);
-          (t.seconds < 10) ? (seconds.innerHTML = `0 + ${t.seconds}`) : (seconds.innerHTML = t.seconds);
+          (t.hours < 10) ? (hours.innerHTML = `0${t.hours}`) : (hours.innerHTML = t.hours);
+          (t.minutes < 10) ? (minutes.innerHTML = `0${t.minutes}`) : (minutes.innerHTML = t.minutes);
+          (t.seconds < 10) ? (seconds.innerHTML = `0${t.seconds}`) : (seconds.innerHTML = t.seconds);
 
           if (t.total <= 0) {
               hours.innerHTML = '00';
