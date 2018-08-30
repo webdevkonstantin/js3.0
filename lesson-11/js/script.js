@@ -120,64 +120,79 @@ window.addEventListener('DOMContentLoaded', function(e) {
       });
   }
 
+  // указываем контекст для функции через call
   more.addEventListener('click', function () {
       showModal.call(this);
   });
 
   close.addEventListener('click', function () {
-      overlay.style.display = 'none';
-      if (more.classList.contains('more-splash')) more.classList.remove('more-splash');
+    overlay.style.display = 'none';
+    if (more.classList.contains('more-splash')) more.classList.remove('more-splash');
 
-      for (let i = 0; i < readMore.length; i++) {
-          if (readMore[i].classList.contains('more-splash')) readMore[i].classList.remove('more-splash');
-      }
+    for (let i = 0; i < readMore.length; i++) {
+      if (readMore[i].classList.contains('more-splash')) readMore[i].classList.remove('more-splash');
+    }
 
-      document.body.style.overflow = '';
+    document.body.style.overflow = '';
   });
 
   function showModal() {
-      this.classList.add('more-splash');
-      overlay.style.display = 'block';
-      document.body.style.overflow = 'hidden';
+    this.classList.add('more-splash');
+    overlay.style.display = 'block';
+    document.body.style.overflow = 'hidden';
   }
 
   // Form
   let message = new Object();
+
   message.loading = "Загрузка...";
   message.success = "Спасибо! Скоро мы с вами свяжемся";
   message.failure = "Что-то пошло не так...";
 
-  let form = document.getElementsByClassName('main-form')[0],
-      input = form.getElementsByTagName('input'),
+  let mainForm = document.getElementsByClassName('main-form')[0],
+      contactForm = document.getElementById('form'),
       statusMessage = document.createElement('div');
       statusMessage.classList.add('status');
 
-  form.addEventListener('submit', function(e) {
+  // Modal form
+  mainForm.addEventListener('submit', function(e) {
+    ajaxRequest(this, e);
+  });
+
+  // Contact form
+  contactForm.addEventListener('submit', function (e) {
+    ajaxRequest(this, e);
+  });
+
+  function ajaxRequest(form, e) {
     e.preventDefault();
     form.appendChild(statusMessage);
 
     // AJAX
     let request = new XMLHttpRequest();
+    let formData = new FormData(form);
+    let input = form.getElementsByTagName('input');
+
     request.open("POST", 'server.php');
     request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-
-    let formData = new FormData(form);
     request.send(formData);
+
     request.onreadystatechange = function () {
       if (request.readyState < 4) {
         statusMessage.innerHTML = message.loading;
       } else if (request.readyState === 4) {
-        if (request.readyStatus == 200 && request.status < 300) {
-          statusMessage.innerHTML = message.success;
+        if (request.readyStatus === 200 && request.status < 300) {
           // Добавляем контент на страницу
+          statusMessage.innerHTML = message.success;
         } else {
           statusMessage.innerHTML = message.failure;
         }
       }
-    }
-    for (var i = 0; i < input.length; i++) {
-      input[i].value = '';
+    };
+
+    for (let i = 0; i < input.length; i++) {
       // Очищаем поля ввода
+      input[i].value = '';
     }
-  });
+  }
 });
