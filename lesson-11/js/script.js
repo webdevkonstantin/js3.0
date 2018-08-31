@@ -154,45 +154,40 @@ window.addEventListener('DOMContentLoaded', function(e) {
       statusMessage = document.createElement('div');
       statusMessage.classList.add('status');
 
-  // Modal form
-  mainForm.addEventListener('submit', function(e) {
-    sendForm(this, e);
-  });
+  function sendForm(form) {
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      form.appendChild(statusMessage);
 
-  // Contact form
-  contactForm.addEventListener('submit', function (e) {
-    sendForm(this, e);
-  });
+      // AJAX
+      let request = new XMLHttpRequest();
+      let formData = new FormData(form);
+      let input = form.getElementsByTagName('input');
 
-  function sendForm(form, e) {
-    e.preventDefault();
-    form.appendChild(statusMessage);
+      request.open("POST", 'server.php');
+      request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+      request.send(formData);
 
-    // AJAX
-    let request = new XMLHttpRequest();
-    let formData = new FormData(form);
-    let input = form.getElementsByTagName('input');
-
-    request.open("POST", 'server.php');
-    request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    request.send(formData);
-
-    request.onreadystatechange = function () {
-      if (request.readyState < 4) {
-        statusMessage.innerHTML = message.loading;
-      } else if (request.readyState === 4) {
-        if (request.readyStatus === 200 && request.status < 300) {
-          // Добавляем контент на страницу
-          statusMessage.innerHTML = message.success;
-        } else {
-          statusMessage.innerHTML = message.failure;
+      request.onreadystatechange = function () {
+        if (request.readyState < 4) {
+          statusMessage.innerHTML = message.loading;
+        } else if (request.readyState === 4) {
+          if (request.readyStatus === 200 && request.status < 300) {
+            // Добавляем контент на страницу
+            statusMessage.innerHTML = message.success;
+          } else {
+            statusMessage.innerHTML = message.failure;
+          }
         }
-      }
-    };
+      };
 
-    for (let i = 0; i < input.length; i++) {
-      // Очищаем поля ввода
-      input[i].value = '';
-    }
+      for (let i = 0; i < input.length; i++) {
+        // Очищаем поля ввода
+        input[i].value = '';
+      }
+    });
   }
+
+  sendForm(mainForm); // Modal form
+  sendForm(contactForm); // Contact form
 });
