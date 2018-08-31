@@ -209,4 +209,6 @@ window.addEventListener('DOMContentLoaded', function(e) {
   sendForm(mainForm); // Modal form
   sendForm(contactForm); // Contact form
 
+  //npm install --save @babel/polyfill
+
 });
