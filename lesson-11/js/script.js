@@ -156,15 +156,15 @@ window.addEventListener('DOMContentLoaded', function(e) {
 
   // Modal form
   mainForm.addEventListener('submit', function(e) {
-    ajaxRequest(this, e);
+    sendForm(this, e);
   });
 
   // Contact form
   contactForm.addEventListener('submit', function (e) {
-    ajaxRequest(this, e);
+    sendForm(this, e);
   });
 
-  function ajaxRequest(form, e) {
+  function sendForm(form, e) {
     e.preventDefault();
     form.appendChild(statusMessage);
 
