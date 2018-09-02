@@ -99,9 +99,9 @@ window.addEventListener('DOMContentLoaded', function(e) {
                   r = (top < 0 ? Math.max(w - progress/speed, w + top) : Math.min(w + progress/speed, w + top));
               window.scrollTo(0, r);
               if (r !== w + top) {
-                  requestAnimationFrame(step)
+                  requestAnimationFrame(step);
               } else {
-                  location.hash = hash  // URL с хэшем
+                  location.hash = hash;  // URL с хэшем
               }
           }
       }, false);
@@ -155,36 +155,49 @@ window.addEventListener('DOMContentLoaded', function(e) {
       statusMessage.classList.add('status');
 
   function sendForm(form) {
-    form.addEventListener('submit', function (e) {
+    form.addEventListener('submit', function(e) {
       e.preventDefault();
       form.appendChild(statusMessage);
-
-      // AJAX
-      let request = new XMLHttpRequest();
       let formData = new FormData(form);
       let input = form.getElementsByTagName('input');
 
-      request.open("POST", 'server.php');
-      request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-      request.send(formData);
+      function postData(data) {
 
-      request.onreadystatechange = function () {
-        if (request.readyState < 4) {
-          statusMessage.innerHTML = message.loading;
-        } else if (request.readyState === 4) {
-          if (request.readyStatus === 200 && request.status < 300) {
-            // Добавляем контент на страницу
-            statusMessage.innerHTML = message.success;
-          } else {
-            statusMessage.innerHTML = message.failure;
-          }
+        return new Promise(function (resolve,reject) {
+          let request = new XMLHttpRequest();
+
+          request.open("POST", 'server.php');
+          request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+          request.onreadystatechange = function () {
+            if (request.readyState < 4) {
+              resolve();
+            } else if (request.readyState === 4) {
+              if (request.status === 200 && request.status < 300) {
+                resolve();
+              } else {
+                reject();
+              }
+            }
+          };
+
+          request.send(data);
+        });
+      } // End postData
+
+      function clearInput() {
+        for (let i = 0; i < input.length; i++) {
+          input[i].value = '';
         }
-      };
+      } // End clearInput
 
-      for (let i = 0; i < input.length; i++) {
-        // Очищаем поля ввода
-        input[i].value = '';
-      }
+      postData(formData)
+        .then(()=> statusMessage.innerHTML = message.loading)
+        .then(()=> {
+          statusMessage.innerHTML = message.success;
+        })
+        .catch(()=> statusMessage.innerHTML = message.failure)
+        .then(clearInput);
     });
   }
 
@@ -192,7 +205,7 @@ window.addEventListener('DOMContentLoaded', function(e) {
   sendForm(contactForm); // Contact form
 
   // Slider
-  let slideIndex = 1;
+  let slideIndex = 1,
       slides = document.getElementsByClassName('slider-item'),
       prev = document.querySelector('.prev'),
       next = document.querySelector('.next'),
@@ -218,15 +231,15 @@ window.addEventListener('DOMContentLoaded', function(e) {
     }
 
     slides[slideIndex - 1].style.display = 'block';
-    dots[slideIndex - 1].classList.add('dot-active')
+    dots[slideIndex - 1].classList.add('dot-active');
   }
 
   function plusSlides (n) {
-    showSlides(slideIndex += n)
+    showSlides(slideIndex += n);
   }
 
   function currentSlide (n) {
-    showSlides(slideIndex = n)
+    showSlides(slideIndex = n);
   }
 
   prev.addEventListener('click', function(e) {
@@ -239,7 +252,7 @@ window.addEventListener('DOMContentLoaded', function(e) {
   dotsWrap.addEventListener('click', function(e) {
     for (var i = 0; i < dots.length + 1; i++) {
       if (e.target.classList.contains('dot') && e.target == dots[i-1]) {
-        currentSlide(i)
+        currentSlide(i);
       }
     }
   });
@@ -280,7 +293,7 @@ window.addEventListener('DOMContentLoaded', function(e) {
       totalValue.innerHTML = 0;
     } else {
       let a = total;
-      totalValue.innerHTML = a * this.options[this.selectedIndex].value;;
+      totalValue.innerHTML = a * this.options[this.selectedIndex].value;
     }
   });
 
