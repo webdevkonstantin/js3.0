@@ -11,7 +11,7 @@ let num = arr[1][1];
 // Узнать, что нам вернет функция each в данных условиях. Проверить её на тип данных, который она возвращает,
 // на соответствие ожидаемому результату (который вы получили) и на свойство length.
 
-var each = function(startArr, f){return f(startArr)};
+var each = function(startArr, f){return f(startArr);};
 
 var arr2 = [64, 49, 36, 25, 16];
 var myFunc = function(a) {
@@ -29,31 +29,31 @@ let assert = require('chai').assert;
 // Функция sum должна возвращать тип данных true
 describe("sum", function () {
   it("Получаем результат сложения 2х чисел 2 и 9 и он больше 10 = true", function () {
-    assert.equal(sum(2,9), true)
-  })
+    assert.equal(sum(2,9), true);
+  });
 });
 
 // Переменная num должна быть равна 5
 describe("num", function () {
   it("Получаем число из ассоциативного массива = 5", function () {
-    assert.equal(num, 5)
-  })
+    assert.equal(num, 5);
+  });
 });
 
 describe("typeof result", function () {
   it("Получаем тип данных результата функции each = array", function () {
-    assert.typeOf(result, 'array')
-  })
+    assert.typeOf(result, 'array');
+  });
 });
 
 describe("result", function () {
   it("Получаем результат, полученный с помощью функции each = [8,7,6,5,4]", function () {
-    assert.sameOrderedMembers(result, [8,7,6,5,4])
-  })
+    assert.sameOrderedMembers(result, [8,7,6,5,4]);
+  });
 });
 
 describe("lengthOf result", function () {
   it("Получаем длину массива, полученного с помощью функции each = 5", function () {
-    assert.lengthOf(result, 5)
-  })
+    assert.lengthOf(result, 5);
+  });
 });
