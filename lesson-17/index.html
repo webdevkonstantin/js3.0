@@ -2,20 +2,53 @@
 <html lang="en">
 	<head>
 		<meta charset="UTF-8">
+
 		<link rel="stylesheet" href="css/style.css">
 		<link rel="stylesheet" href="css/funcy.css">
-		<link rel="stylesheet" href="css/tower.css">
+		<link rel="stylesheet" type="text/css" href="slick/slick.css"/>
+		<link rel="stylesheet" type="text/css" href="slick/slick-theme.css"/>
+		<!--<link rel="stylesheet" type="text/css" href="https://raw.githubusercontent.com/kenwheeler/slick/master/slick/slick-theme.css"/>-->
+
+
 		<title>Урок № 17. Работа с готовым кодом, использование в своих проектах и как “не придумывать велосипед”</title>
 	</head>
 	<body>
 		<main>
+
 			<input id="tab1" type="radio" name="tabs" checked>
-			<label for="tab1">Fancy Slider</label>
+			<label for="tab1">Slick Slider</label>
 			<input id="tab2" type="radio" name="tabs">
-			<label for="tab2">Tower Blocks</label>
+			<label for="tab2">Fancy Slider</label>
 			<input id="tab3" type="radio" name="tabs">
-			<label for="tab3">Calculator</label>
+			<label for="tab3">Tower Blocks</label>
+			<input id="tab4" type="radio" name="tabs">
+			<label for="tab4">Calculator</label>
+
 			<section id="content1">
+				<div class="main">
+					<div class="slider slider-for">
+						<div><h3>1</h3></div>
+						<div><h3>2</h3></div>
+						<div><h3>3</h3></div>
+						<div><h3>4</h3></div>
+						<div><h3>5</h3></div>
+					</div>
+					<div class="slider slider-nav">
+						<div><h3>1</h3></div>
+						<div><h3>2</h3></div>
+						<div><h3>3</h3></div>
+						<div><h3>4</h3></div>
+						<div><h3>5</h3></div>
+					</div>
+					<div class="action">
+						<a href="#" data-slide="3">go to slide 3</a>
+						<a href="#" data-slide="4">go to slide 4</a>
+						<a href="#" data-slide="5">go to slide 5</a>
+					</div>
+				</div>
+			</section>
+
+			<section id="content2">
 				<div class="demo-cont">
 					<!-- slider start -->
 					<div class="fnc-slider example-slider">
@@ -141,59 +174,44 @@
 						</nav>
 					</div>
 					<!-- slider end -->
-					<div class="demo-cont__credits">
-						<div class="demo-cont__credits-close"></div>
-						<h2 class="demo-cont__credits-heading">Made by</h2>
-						<img src="//s3-us-west-2.amazonaws.com/s.cdpn.io/142996/profile/profile-512_5.jpg" alt="" class="demo-cont__credits-img" />
-						<h3 class="demo-cont__credits-name">Nikolay Talanov</h3>
-						<a href="https://codepen.io/suez/" target="_blank" class="demo-cont__credits-link">My codepen</a>
-						<a href="https://twitter.com/NikolayTalanov" target="_blank" class="demo-cont__credits-link">My twitter</a>
-						<h2 class="demo-cont__credits-heading">Based on</h2>
-						<a href="https://dribbble.com/shots/2375246-Fashion-Butique-slider-animation" target="_blank" class="demo-cont__credits-link">Concept by Kreativa Studio</a>
-						<h4 class="demo-cont__credits-blend">Global Blend Mode</h4>
-						<div class="colorful-switch">
-							<input type="checkbox" class="colorful-switch__checkbox js-activate-global-blending" id="colorful-switch-cb" />
-							<label class="colorful-switch__label" for="colorful-switch-cb">
-								<span class="colorful-switch__bg"></span>
-								<span class="colorful-switch__dot"></span>
-								<span class="colorful-switch__on">
-									<span class="colorful-switch__on__inner"></span>
-								</span>
-								<span class="colorful-switch__off"></span>
-							</label>
-						</div>
-					</div>
 				</div>
 			</section>
-			<section id="content2">
-				<div id="container">
-					<div id="game"></div>
-					<div id="score">0</div>
-					<div id="instructions">Click (or press the spacebar) to place the block</div>
-					<div class="game-over">
-						<h2>Game Over</h2>
-						<p>You did great, you're the best.</p>
-						<p>Click or spacebar to start again</p>
-					</div>
-					<div class="game-ready">
-						<div id="start-button">Start</div>
-						<div></div>
-					</div>
-				</div>
-			</section>
+
 			<section id="content3">
-				<p>
-					Bacon ipsum dolor sit amet beef venison beef ribs kielbasa. Sausage pig leberkas, t-bone sirloin shoulder bresaola. Frankfurter rump porchetta ham. Pork belly prosciutto brisket meatloaf short ribs.
-				</p>
-				<p>
-					Brisket meatball turkey short loin boudin leberkas meatloaf chuck andouille pork loin pastrami spare ribs pancetta rump. Frankfurter corned beef beef tenderloin short loin meatloaf swine ground round venison.
-				</p>
+				<iframe id="tower" src="tower.html" frameborder="0"></iframe>
 			</section>
+
+			<section id="content4">
+				<iframe id="calculator" src="calculator.html" frameborder="0"></iframe>
+			</section>
+
 			<script src="js/funcy.js"></script>
-			<script src="https://codepen.io/steveg3003/pen/zBVakw"></script>
-			<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r83/three.min.js"></script>
-			<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js"></script>
-			<script src="js/tower.js"></script>
+			<script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+			<script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+			<script type="text/javascript" src="slick/slick.min.js"></script>
+
+			<script >
+        $('.slider-for').slick({
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          autoplay: true,
+          autoplaySpeed: 2000,
+          arrows: false,
+          speed: 500,
+          fade: true,
+          cssEase: 'linear',
+          asNavFor: '.slider-nav'
+        });
+        $('.slider-nav').slick({
+          slidesToShow: 3,
+          slidesToScroll: 1,
+          asNavFor: '.slider-for',
+          dots: true,
+          centerMode: true,
+          focusOnSelect: true
+        });
+			</script>
+
 		</main>
 	</body>
 </html>
