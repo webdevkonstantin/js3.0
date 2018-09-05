@@ -5,7 +5,7 @@ JavaScript 3.0
 
 ### *Урок №17*
 
-__*Обязательное задание: ([Посмотреть](https://rawgit.com/webdevkonstantin/js3.0/master/lesson-17/index.html))*__
+__*Обязательное задание ([Посмотреть](https://rawgit.com/webdevkonstantin/js3.0/master/lesson-17/index.html)):*__
 1. Создать HTML страницу
 2. В ней создать 3 вкладки (таба)
 3. Подключить один из готовых вариантов слайдера:
