@@ -1,7 +1,10 @@
 JavaScript 3.0
 --------------
+
 4 неделя
 ========
+
+### *Выпускной проект(<a href="https://rawgit.com/webdevkonstantin/js3.0/master/final-work/index.html">Посмотреть</a>)*
 
 ### *Урок №17*
 
