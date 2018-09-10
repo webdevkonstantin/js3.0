@@ -1,6 +1,6 @@
 function sliderTop () {
   let slideIndex = 1,
-      delay = 3500,
+      delay = 5000,
       lock = false,
       run,
       slides = document.getElementsByClassName('main-slider-item');
@@ -26,6 +26,7 @@ function sliderTop () {
     showSlides(slideIndex += n);
   }
 
+  // автоматическое пролистывание изображений
   function autoSlide() {
     if (lock === true) {
       lock = false;
@@ -40,6 +41,7 @@ function sliderTop () {
   }
   autoSlide();
 
+  // по нажатию на изображение можем остановить слайдшоу
   for (let i = 0; i < slides.length; i++) {
     slides[i].addEventListener('click', function () {
       autoSlide();
