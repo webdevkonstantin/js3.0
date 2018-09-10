@@ -21,19 +21,41 @@ function modals() {
       buttonsConsult = document.getElementsByClassName('button-consultation'),
       overlayConsult = document.querySelector('.popup-consultation'),
       closeConsult = document.querySelector('.popup-consultation .popup-close'),
-      buttonsGift = document.querySelector('.fixed-gift'),
+      buttonGift = document.querySelector('.fixed-gift'),
       overlayGift = document.querySelector('.popup-gift'),
       closeGift = document.querySelector('.popup-gift .popup-close'),
+      allButtons = document.getElementsByTagName('button'),
+      clickCount = 0,
       userTime = 60000,   // пользователь находится на странице 60 секунд
       popupOpened = false,
       userTimeoutId;
 
-  userTimeoutId = setTimeout(function () {
+  // Отсчет 60 секунд
+  setTimeout(function () {
     console.log('Прошло 60 секунд');
     if (!popupOpened) {
       showModal(overlayConsult);
     }
   }, userTime);
+
+  // Проверяем сколько раз нажимали кнопки кроме кнопки закрыть
+  for (let i = 0; i < allButtons.length; i++) {
+    allButtons[i].addEventListener('click', function (e) {
+      if (!allButtons[i].classList.contains('popup-close')) {
+        clickCount++;
+        console.log('clickCount: ', clickCount);
+      }
+    })
+  }
+
+  window.addEventListener('scroll', function (e) {
+    let buttonGift = document.querySelector('.fixed-gift');
+    if ( buttonGift !== null && clickCount == 0 &&
+         (document.documentElement.scrollHeight - document.documentElement.scrollTop == document.documentElement.clientHeight) ) {
+      showModal(overlayGift);
+      buttonGift.remove();
+    }
+  });
 
   // Проходимся циклом по всем кнопкам "Заказать..."
   for (let i = 0; i < buttonsDesign.length; i++) {
@@ -43,7 +65,7 @@ function modals() {
   closeModalbyButton(closeDesign, overlayDesign);
   closeModalByOverlay(overlayDesign);
 
-  //-----------------------------------------------------------------
+  //-----------------------------------------------------------------------
   // Проходимся циклом по всем кнопкам "Подробнее..."
   for (let i = 0; i < buttonsConsult.length; i++) {
     showModalByButton(buttonsConsult[i],overlayConsult);
@@ -52,11 +74,11 @@ function modals() {
   closeModalbyButton(closeConsult, overlayConsult);
   closeModalByOverlay(overlayConsult);
 
-  //--------------------------------------------------------------------
+  //----------------------------------------------------------------------
   //Нажатие на "Подарок"
-  buttonsGift.addEventListener('click', function () {
+  buttonGift.addEventListener('click', function () {
     showModal(overlayGift);
-    buttonsGift.remove();
+    buttonGift.remove();
   });
 
   closeModalbyButton(closeGift, overlayGift);
@@ -66,6 +88,7 @@ function modals() {
   function showModal(popup) {
     popupOpened = true;
     popup.style.display = 'block';
+    popup.classList.add('animated', 'fadeIn');
     document.body.style.overflow = 'hidden';
   }
 
