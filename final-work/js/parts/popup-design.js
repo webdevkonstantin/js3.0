@@ -6,7 +6,7 @@ function popupDesign() {
   // Проходимся циклом по всем кнопкам "Заказать..."
   for (let i = 0; i < order.length; i++) {
     order[i].addEventListener('click', function () {
-      showModal.call(this);
+      showPopupDesign.call(this);
     });
   }
 
@@ -22,7 +22,7 @@ function popupDesign() {
     }
   });
 
-  function showModal() {
+  function showPopupDesign() {
     overlay.style.display = 'block';
     document.body.style.overflow = 'hidden';
   }
