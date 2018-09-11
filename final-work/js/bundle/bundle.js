@@ -2,33 +2,27 @@
 window.addEventListener('DOMContentLoaded', function(e) {
   var sliderTop = require('../parts/slider-top');
   var modals = require('../parts/modals');
-  // var popupDesign = require('../parts/popup-design');
-  // var popupConsultation = require('../parts/popup-consultation');
-  // var popupGift = require('../parts/popup-gift');
+  var sizesHover = require('../parts/sizesHover');
 
   sliderTop();
   modals();
-
-  // popupDesign();
-  // popupConsultation();
-  // popupGift();
+  sizesHover();
 });
-},{"../parts/modals":2,"../parts/slider-top":3}],2:[function(require,module,exports){
+},{"../parts/modals":2,"../parts/sizesHover":3,"../parts/slider-top":4}],2:[function(require,module,exports){
 function modals() {
-  let buttonsDesign = document.getElementsByClassName('button-design'),
-      overlayDesign = document.querySelector('.popup-design'),
-      closeDesign = document.querySelector('.popup-design .popup-close'),
+  let buttonsDesign  = document.getElementsByClassName('button-design'),
+      overlayDesign  = document.querySelector('.popup-design'),
+      closeDesign    = document.querySelector('.popup-design .popup-close'),
       buttonsConsult = document.getElementsByClassName('button-consultation'),
       overlayConsult = document.querySelector('.popup-consultation'),
-      closeConsult = document.querySelector('.popup-consultation .popup-close'),
-      buttonGift = document.querySelector('.fixed-gift'),
-      overlayGift = document.querySelector('.popup-gift'),
-      closeGift = document.querySelector('.popup-gift .popup-close'),
-      allButtons = document.getElementsByTagName('button'),
-      clickCount = 0,
-      userTime = 60000,   // пользователь находится на странице 60 секунд
-      popupOpened = false,
-      userTimeoutId;
+      closeConsult   = document.querySelector('.popup-consultation .popup-close'),
+      buttonGift     = document.querySelector('.fixed-gift'),
+      overlayGift    = document.querySelector('.popup-gift'),
+      closeGift      = document.querySelector('.popup-gift .popup-close'),
+      allButtons     = document.getElementsByTagName('button'),
+      clickCount     = 0,
+      userTime       = 60000,   // пользователь находится на странице 60 секунд
+      popupOpened    = false;
 
   // Отсчет 60 секунд
   setTimeout(function () {
@@ -38,7 +32,7 @@ function modals() {
     }
   }, userTime);
 
-  // Проверяем сколько раз нажимали кнопки кроме кнопки закрыть
+  // Проверяем сколько раз нажимали кнопки (кроме кнопок закрыть)
   for (let i = 0; i < allButtons.length; i++) {
     allButtons[i].addEventListener('click', function (e) {
       if (!allButtons[i].classList.contains('popup-close')) {
@@ -48,10 +42,11 @@ function modals() {
     })
   }
 
+  // Проверяем, что находимся внизу страницы, сколько раз нажимали кнопки и есть ли еще подарок
   window.addEventListener('scroll', function (e) {
     let buttonGift = document.querySelector('.fixed-gift');
-    if ( buttonGift !== null && clickCount == 0 &&
-         (document.documentElement.scrollHeight - document.documentElement.scrollTop == document.documentElement.clientHeight) ) {
+    if ( buttonGift !== null && clickCount === 0 &&
+         (document.documentElement.scrollHeight - document.documentElement.scrollTop === document.documentElement.clientHeight) ) {
       showModal(overlayGift);
       buttonGift.remove();
     }
@@ -62,7 +57,7 @@ function modals() {
     showModalByButton(buttonsDesign[i],overlayDesign);
   }
 
-  closeModalbyButton(closeDesign, overlayDesign);
+  closeModalByButton(closeDesign, overlayDesign);
   closeModalByOverlay(overlayDesign);
 
   //-----------------------------------------------------------------------
@@ -71,7 +66,7 @@ function modals() {
     showModalByButton(buttonsConsult[i],overlayConsult);
   }
 
-  closeModalbyButton(closeConsult, overlayConsult);
+  closeModalByButton(closeConsult, overlayConsult);
   closeModalByOverlay(overlayConsult);
 
   //----------------------------------------------------------------------
@@ -81,7 +76,7 @@ function modals() {
     buttonGift.remove();
   });
 
-  closeModalbyButton(closeGift, overlayGift);
+  closeModalByButton(closeGift, overlayGift);
   closeModalByOverlay(overlayGift);
 
   //-----------------------------------------------------------------------
@@ -98,7 +93,7 @@ function modals() {
     });
   }
 
-  function closeModalbyButton(button, popup) {
+  function closeModalByButton(button, popup) {
     button.addEventListener('click', function () {
       popupOpened = false;
       popup.style.display = 'none';
@@ -119,6 +114,32 @@ function modals() {
 
 module.exports = modals;
 },{}],3:[function(require,module,exports){
+function sizesHover() {
+  let sizes = document.getElementsByClassName('sizes-block');
+
+  for (let i = 0; i < sizes.length; i++) {
+    sizes[i].addEventListener('mouseenter', function () {
+      let img = sizes[i].children[0];
+
+      sizes[i].children[1].style.display = 'none';
+      sizes[i].children[2].style.display = 'none';
+      sizes[i].children[3].style.display = 'none';
+      img.src = "img/sizes-" + (i + 1) + "-1.png";
+    });
+
+    sizes[i].addEventListener('mouseleave', function () {
+      let img = sizes[i].children[0];
+
+      sizes[i].children[1].style.display = 'block';
+      sizes[i].children[2].style.display = 'block';
+      sizes[i].children[3].style.display = 'block';
+      img.src = "img/sizes-" + (i + 1) + ".png";
+    });
+  }
+}
+
+module.exports = sizesHover;
+},{}],4:[function(require,module,exports){
 function sliderTop () {
   let slideIndex = 1,
       delay = 5000,

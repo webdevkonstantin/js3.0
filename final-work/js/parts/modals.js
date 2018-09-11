@@ -1,18 +1,17 @@
 function modals() {
-  let buttonsDesign = document.getElementsByClassName('button-design'),
-      overlayDesign = document.querySelector('.popup-design'),
-      closeDesign = document.querySelector('.popup-design .popup-close'),
+  let buttonsDesign  = document.getElementsByClassName('button-design'),
+      overlayDesign  = document.querySelector('.popup-design'),
+      closeDesign    = document.querySelector('.popup-design .popup-close'),
       buttonsConsult = document.getElementsByClassName('button-consultation'),
       overlayConsult = document.querySelector('.popup-consultation'),
-      closeConsult = document.querySelector('.popup-consultation .popup-close'),
-      buttonGift = document.querySelector('.fixed-gift'),
-      overlayGift = document.querySelector('.popup-gift'),
-      closeGift = document.querySelector('.popup-gift .popup-close'),
-      allButtons = document.getElementsByTagName('button'),
-      clickCount = 0,
-      userTime = 60000,   // пользователь находится на странице 60 секунд
-      popupOpened = false,
-      userTimeoutId;
+      closeConsult   = document.querySelector('.popup-consultation .popup-close'),
+      buttonGift     = document.querySelector('.fixed-gift'),
+      overlayGift    = document.querySelector('.popup-gift'),
+      closeGift      = document.querySelector('.popup-gift .popup-close'),
+      allButtons     = document.getElementsByTagName('button'),
+      clickCount     = 0,
+      userTime       = 60000,   // пользователь находится на странице 60 секунд
+      popupOpened    = false;
 
   // Отсчет 60 секунд
   setTimeout(function () {
@@ -22,7 +21,7 @@ function modals() {
     }
   }, userTime);
 
-  // Проверяем сколько раз нажимали кнопки кроме кнопки закрыть
+  // Проверяем сколько раз нажимали кнопки (кроме кнопок закрыть)
   for (let i = 0; i < allButtons.length; i++) {
     allButtons[i].addEventListener('click', function (e) {
       if (!allButtons[i].classList.contains('popup-close')) {
@@ -35,8 +34,8 @@ function modals() {
   // Проверяем, что находимся внизу страницы, сколько раз нажимали кнопки и есть ли еще подарок
   window.addEventListener('scroll', function (e) {
     let buttonGift = document.querySelector('.fixed-gift');
-    if ( buttonGift !== null && clickCount == 0 &&
-         (document.documentElement.scrollHeight - document.documentElement.scrollTop == document.documentElement.clientHeight) ) {
+    if ( buttonGift !== null && clickCount === 0 &&
+         (document.documentElement.scrollHeight - document.documentElement.scrollTop === document.documentElement.clientHeight) ) {
       showModal(overlayGift);
       buttonGift.remove();
     }
@@ -47,7 +46,7 @@ function modals() {
     showModalByButton(buttonsDesign[i],overlayDesign);
   }
 
-  closeModalbyButton(closeDesign, overlayDesign);
+  closeModalByButton(closeDesign, overlayDesign);
   closeModalByOverlay(overlayDesign);
 
   //-----------------------------------------------------------------------
@@ -56,7 +55,7 @@ function modals() {
     showModalByButton(buttonsConsult[i],overlayConsult);
   }
 
-  closeModalbyButton(closeConsult, overlayConsult);
+  closeModalByButton(closeConsult, overlayConsult);
   closeModalByOverlay(overlayConsult);
 
   //----------------------------------------------------------------------
@@ -66,7 +65,7 @@ function modals() {
     buttonGift.remove();
   });
 
-  closeModalbyButton(closeGift, overlayGift);
+  closeModalByButton(closeGift, overlayGift);
   closeModalByOverlay(overlayGift);
 
   //-----------------------------------------------------------------------
@@ -83,7 +82,7 @@ function modals() {
     });
   }
 
-  function closeModalbyButton(button, popup) {
+  function closeModalByButton(button, popup) {
     button.addEventListener('click', function () {
       popupOpened = false;
       popup.style.display = 'none';
