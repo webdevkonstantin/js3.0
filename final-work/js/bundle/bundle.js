@@ -1,16 +1,18 @@
 (function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(require,module,exports){
 window.addEventListener('DOMContentLoaded', function(e) {
   var sliderTop = require('../parts/sliderTop');
-  var modals = require('../parts/modals');
+  var modals    = require('../parts/modals');
   var sizesHover = require('../parts/sizesHover');
   var blocksLoad = require('../parts/blocksLoad');
+  var portfolioFilter = require('../parts/portfolioFilter');
 
   sliderTop();
   modals();
   sizesHover();
   blocksLoad();
+  portfolioFilter();
 });
-},{"../parts/blocksLoad":2,"../parts/modals":3,"../parts/sizesHover":4,"../parts/sliderTop":5}],2:[function(require,module,exports){
+},{"../parts/blocksLoad":2,"../parts/modals":3,"../parts/portfolioFilter":4,"../parts/sizesHover":5,"../parts/sliderTop":6}],2:[function(require,module,exports){
 function blocksLoad() {
   let btn = document.querySelector('.button-styles'),
       blocks = document.getElementsByClassName('styles-block');
@@ -139,6 +141,108 @@ function modals() {
 
 module.exports = modals;
 },{}],4:[function(require,module,exports){
+function portfolioFilter() {
+
+  let portfolioMenu  = document.querySelector('ul.portfolio-menu'),
+      btnAll         = document.querySelector('li.all'),
+      btnLovers      = document.querySelector('li.lovers'),
+      btnChef        = document.querySelector('li.chef'),
+      btnGirl        = document.querySelector('li.girl'),
+      btnGuy         = document.querySelector('li.guy'),
+      btnGrandmother = document.querySelector('li.grandmother'),
+      btnGranddad    = document.querySelector('li.granddad'),
+
+      worksAll       = document.getElementsByClassName('portfolio-block all'),
+      worksLovers    = document.getElementsByClassName('portfolio-block lovers'),
+      worksChef      = document.getElementsByClassName('portfolio-block chef'),
+      worksGirl      = document.getElementsByClassName('portfolio-block girl'),
+      worksGuy       = document.getElementsByClassName('portfolio-block guy'),
+      worksNo        = document.querySelector('.portfolio-no');
+
+  // Пробегаемся циклом по всем пунктам меню
+  for (let i = 0; i < portfolioMenu.children.length; i++) {
+    portfolioMenu.children[i].addEventListener('click', ()=> {
+      let btnClassName = portfolioMenu.children[i].className.split(" "),
+          worksCount = 0;
+
+      // Проходимся циклом по всем работам портфолио
+      for (let j = 0; j < worksAll.length; j++) {
+        if (worksAll[j].classList.contains(btnClassName[0])) {
+          worksAll[j].style.display = 'block';
+          worksCount++;
+        } else {
+          worksAll[j].style.display = 'none';
+        }
+      }
+
+      worksCount ? worksNo.style.display = 'none': worksNo.style.display = 'block';
+
+      // Удаляем у всех пунктов меню класс active
+      for (let k = 0; k < portfolioMenu.children.length; k++) {
+        portfolioMenu.children[k].classList.remove('active');
+      }
+
+      portfolioMenu.children[i].classList.add('active');
+    });
+  }
+
+
+/*
+  function filter(btn, blockClass) {
+    btn.addEventListener('click', function () {
+      for (var i = 0; i < allWorks.length; i++) {
+        if (allWorks[i].classList.contains(blockClass) == false) {
+          allWorks[i].style.display = 'none';
+        } else {
+          allWorks[i].style.display = 'block';
+        }
+      }
+
+      grandWorks.style.display = 'none';
+
+      for (var _i5 = 0; _i5 < allBtns.children.length; _i5++) {
+        allBtns.children[_i5].classList.remove('active');
+      }
+
+      btn.classList.add('active');
+    });
+  };
+  filter(allBtn, 'all');
+  filter(loversBtn, 'lovers');
+  filter(chefBtn, 'chef');
+  filter(girlBtn, 'girl');
+  filter(guyBtn, 'guy');
+
+  grandmotherBtn.addEventListener('click', function () {
+    for (var i = 0; i < allWorks.length; i++) {
+      allWorks[i].style.display = 'none';
+    };
+    grandWorks.style.display = 'block';
+
+    for (var _i6 = 0; _i6 < allBtns.children.length; _i6++) {
+      allBtns.children[_i6].classList.remove('active');
+    }
+
+    grandmotherBtn.classList.add('active');
+  });
+
+  granddadBtn.addEventListener('click', function () {
+    for (var i = 0; i < allWorks.length; i++) {
+      allWorks[i].style.display = 'none';
+    };
+    grandWorks.style.display = 'block';
+
+    for (var _i7 = 0; _i7 < allBtns.children.length; _i7++) {
+      allBtns.children[_i7].classList.remove('active');
+    }
+
+    granddadBtn.classList.add('active');
+  });*/
+}
+
+module.exports = portfolioFilter;
+
+},{}],5:[function(require,module,exports){
 function sizesHover() {
   let sizes = document.getElementsByClassName('sizes-block');
 
@@ -181,7 +285,7 @@ function sizesHover() {
 }
 
 module.exports = sizesHover;
-},{}],5:[function(require,module,exports){
+},{}],6:[function(require,module,exports){
 function sliderTop () {
   let slideIndex = 1,
       delay = 5000,
