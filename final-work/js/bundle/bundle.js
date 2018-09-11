@@ -1,14 +1,39 @@
 (function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(require,module,exports){
 window.addEventListener('DOMContentLoaded', function(e) {
-  var sliderTop = require('../parts/slider-top');
+  var sliderTop = require('../parts/sliderTop');
   var modals = require('../parts/modals');
   var sizesHover = require('../parts/sizesHover');
+  var blocksLoad = require('../parts/blocksLoad');
 
   sliderTop();
   modals();
   sizesHover();
+  blocksLoad();
 });
-},{"../parts/modals":2,"../parts/sizesHover":3,"../parts/slider-top":4}],2:[function(require,module,exports){
+},{"../parts/blocksLoad":2,"../parts/modals":3,"../parts/sizesHover":4,"../parts/sliderTop":5}],2:[function(require,module,exports){
+function blocksLoad() {
+  let btn = document.querySelector('.button-styles'),
+      blocks = document.getElementsByClassName('styles-block');
+
+  btn.addEventListener('click', function (e) {
+    for (let i = 0; i < blocks.length; i++) {
+      if (blocks[i].parentElement.classList.contains('hidden-lg')) {
+        blocks[i].parentElement.classList.remove('hidden-lg', 'hidden-md', 'hidden-sm', 'hidden-xs', 'styles-2');
+        blocks[i].parentElement.classList.add('col-sm-3', 'col-sm-offset-0', 'col-xs-10', 'col-xs-offset-1', 'animated', 'fadeIn');
+      }
+
+      btn.classList.add('animated', 'fadeOut');
+
+      // Удаляем кнопку через 0.5 сек
+      setTimeout(function methodName() {
+        btn.remove();
+      }, 500);
+    }
+  });
+}
+
+module.exports = blocksLoad;
+},{}],3:[function(require,module,exports){
 function modals() {
   let buttonsDesign  = document.getElementsByClassName('button-design'),
       overlayDesign  = document.querySelector('.popup-design'),
@@ -113,7 +138,7 @@ function modals() {
 }
 
 module.exports = modals;
-},{}],3:[function(require,module,exports){
+},{}],4:[function(require,module,exports){
 function sizesHover() {
   let sizes = document.getElementsByClassName('sizes-block');
 
@@ -156,7 +181,7 @@ function sizesHover() {
 }
 
 module.exports = sizesHover;
-},{}],4:[function(require,module,exports){
+},{}],5:[function(require,module,exports){
 function sliderTop () {
   let slideIndex = 1,
       delay = 5000,
