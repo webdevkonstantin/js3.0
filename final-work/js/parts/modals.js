@@ -14,7 +14,7 @@ function modals() {
       popupOpened    = false;
 
   // Отсчет 60 секунд
-  setTimeout(function () {
+  setTimeout(()=>  {
     console.log('Прошло 60 секунд');
     if (!popupOpened) {
       showModal(overlayConsult);
@@ -23,7 +23,7 @@ function modals() {
 
   // Проверяем сколько раз нажимали кнопки (кроме кнопок закрыть)
   for (let i = 0; i < allButtons.length; i++) {
-    allButtons[i].addEventListener('click', function (e) {
+    allButtons[i].addEventListener('click', ()=>  {
       if (!allButtons[i].classList.contains('popup-close')) {
         clickCount++;
         console.log('clickCount: ', clickCount);
@@ -32,7 +32,7 @@ function modals() {
   }
 
   // Проверяем, что находимся внизу страницы, сколько раз нажимали кнопки и есть ли еще подарок
-  window.addEventListener('scroll', function (e) {
+  window.addEventListener('scroll', ()=>  {
     let buttonGift = document.querySelector('.fixed-gift');
     if ( buttonGift !== null && clickCount === 0 &&
          (document.documentElement.scrollHeight - document.documentElement.scrollTop === document.documentElement.clientHeight) ) {
@@ -60,7 +60,7 @@ function modals() {
 
   //----------------------------------------------------------------------
   //Нажатие на "Подарок"
-  buttonGift.addEventListener('click', function () {
+  buttonGift.addEventListener('click', ()=>  {
     showModal(overlayGift);
     buttonGift.remove();
   });
@@ -77,13 +77,13 @@ function modals() {
   }
 
   function showModalByButton(button,popup) {
-    button.addEventListener('click', function () {
+    button.addEventListener('click', ()=>  {
       showModal(popup);
     });
   }
 
   function closeModalByButton(button, popup) {
-    button.addEventListener('click', function () {
+    button.addEventListener('click', ()=>  {
       popupOpened = false;
       popup.style.display = 'none';
       document.body.style.overflow = '';
@@ -91,7 +91,7 @@ function modals() {
   }
 
   function closeModalByOverlay(overlay) {
-    overlay.addEventListener('click', function(event) {
+    overlay.addEventListener('click', (event)=> {
       if (event.target.closest('.popup-content') === null) {
         popupOpened = false;
         overlay.style.display = 'none';

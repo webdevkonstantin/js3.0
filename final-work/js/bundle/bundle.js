@@ -25,7 +25,7 @@ function modals() {
       popupOpened    = false;
 
   // Отсчет 60 секунд
-  setTimeout(function () {
+  setTimeout(()=>  {
     console.log('Прошло 60 секунд');
     if (!popupOpened) {
       showModal(overlayConsult);
@@ -34,7 +34,7 @@ function modals() {
 
   // Проверяем сколько раз нажимали кнопки (кроме кнопок закрыть)
   for (let i = 0; i < allButtons.length; i++) {
-    allButtons[i].addEventListener('click', function (e) {
+    allButtons[i].addEventListener('click', ()=>  {
       if (!allButtons[i].classList.contains('popup-close')) {
         clickCount++;
         console.log('clickCount: ', clickCount);
@@ -43,7 +43,7 @@ function modals() {
   }
 
   // Проверяем, что находимся внизу страницы, сколько раз нажимали кнопки и есть ли еще подарок
-  window.addEventListener('scroll', function (e) {
+  window.addEventListener('scroll', ()=>  {
     let buttonGift = document.querySelector('.fixed-gift');
     if ( buttonGift !== null && clickCount === 0 &&
          (document.documentElement.scrollHeight - document.documentElement.scrollTop === document.documentElement.clientHeight) ) {
@@ -71,7 +71,7 @@ function modals() {
 
   //----------------------------------------------------------------------
   //Нажатие на "Подарок"
-  buttonGift.addEventListener('click', function () {
+  buttonGift.addEventListener('click', ()=>  {
     showModal(overlayGift);
     buttonGift.remove();
   });
@@ -88,13 +88,13 @@ function modals() {
   }
 
   function showModalByButton(button,popup) {
-    button.addEventListener('click', function () {
+    button.addEventListener('click', ()=>  {
       showModal(popup);
     });
   }
 
   function closeModalByButton(button, popup) {
-    button.addEventListener('click', function () {
+    button.addEventListener('click', ()=>  {
       popupOpened = false;
       popup.style.display = 'none';
       document.body.style.overflow = '';
@@ -102,7 +102,7 @@ function modals() {
   }
 
   function closeModalByOverlay(overlay) {
-    overlay.addEventListener('click', function(event) {
+    overlay.addEventListener('click', (event)=> {
       if (event.target.closest('.popup-content') === null) {
         popupOpened = false;
         overlay.style.display = 'none';
@@ -118,7 +118,7 @@ function sizesHover() {
   let sizes = document.getElementsByClassName('sizes-block');
 
   for (let i = 0; i < sizes.length; i++) {
-    sizes[i].addEventListener('mouseenter', function () {
+    sizes[i].addEventListener('mouseenter', ()=> {
       let img = sizes[i].children[0];
 
       sizes[i].children[1].style.display = 'none';
@@ -127,13 +127,30 @@ function sizesHover() {
       img.src = "img/sizes-" + (i + 1) + "-1.png";
     });
 
-    sizes[i].addEventListener('mouseleave', function () {
+    sizes[i].addEventListener('mouseleave', ()=> {
       let img = sizes[i].children[0];
 
       sizes[i].children[1].style.display = 'block';
       sizes[i].children[2].style.display = 'block';
       sizes[i].children[3].style.display = 'block';
       img.src = "img/sizes-" + (i + 1) + ".png";
+    });
+
+    // Тап в мобильной версии
+    sizes[i].addEventListener('tap', ()=> {
+      if (sizes[i].children[1].style.display == 'block') {
+        let img = sizes[i].children[0];
+        sizes[i].children[1].style.display = 'none';
+        sizes[i].children[2].style.display = 'none';
+        sizes[i].children[3].style.display = 'none';
+        img.src = "img/sizes-" + (i + 1) + "-1.png";
+      } else {
+        let _img = sizes[i].children[0];
+        sizes[i].children[1].style.display = 'block';
+        sizes[i].children[2].style.display = 'block';
+        sizes[i].children[3].style.display = 'block';
+        _img.src = "img/sizes-" + (i + 1) + ".png";
+      }
     });
   }
 }
@@ -153,6 +170,7 @@ function sliderTop () {
     if (n > slides.length) {
       slideIndex = 1;
     }
+
     if (n < 1) {
       slideIndex = slides.length;
     }
@@ -176,7 +194,7 @@ function sliderTop () {
     }
     else if (lock === false) {
       lock = true;
-      run = setInterval(function () {
+      run = setInterval(()=>  {
         plusSlides (1);
       }, delay);
     }
@@ -185,7 +203,7 @@ function sliderTop () {
 
   // по нажатию на изображение можем остановить слайдшоу
   for (let i = 0; i < slides.length; i++) {
-    slides[i].addEventListener('click', function () {
+    slides[i].addEventListener('click', ()=> {
       autoSlide();
     });
   }

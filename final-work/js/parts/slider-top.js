@@ -11,6 +11,7 @@ function sliderTop () {
     if (n > slides.length) {
       slideIndex = 1;
     }
+
     if (n < 1) {
       slideIndex = slides.length;
     }
@@ -34,7 +35,7 @@ function sliderTop () {
     }
     else if (lock === false) {
       lock = true;
-      run = setInterval(function () {
+      run = setInterval(()=>  {
         plusSlides (1);
       }, delay);
     }
@@ -43,7 +44,7 @@ function sliderTop () {
 
   // по нажатию на изображение можем остановить слайдшоу
   for (let i = 0; i < slides.length; i++) {
-    slides[i].addEventListener('click', function () {
+    slides[i].addEventListener('click', ()=> {
       autoSlide();
     });
   }
