@@ -5,14 +5,16 @@ window.addEventListener('DOMContentLoaded', function(e) {
   var sizesHover = require('../parts/sizesHover');
   var blocksLoad = require('../parts/blocksLoad');
   var portfolioFilter = require('../parts/portfolioFilter');
+  var calculator = require('../parts/calculator');
 
   sliderTop();
   modals();
   sizesHover();
   blocksLoad();
   portfolioFilter();
+  calculator();
 });
-},{"../parts/blocksLoad":2,"../parts/modals":3,"../parts/portfolioFilter":4,"../parts/sizesHover":5,"../parts/sliderTop":6}],2:[function(require,module,exports){
+},{"../parts/blocksLoad":2,"../parts/calculator":3,"../parts/modals":4,"../parts/portfolioFilter":5,"../parts/sizesHover":6,"../parts/sliderTop":7}],2:[function(require,module,exports){
 function blocksLoad() {
   let btn = document.querySelector('.button-styles'),
       blocks = document.getElementsByClassName('styles-block');
@@ -36,6 +38,12 @@ function blocksLoad() {
 
 module.exports = blocksLoad;
 },{}],3:[function(require,module,exports){
+function calculator() {
+
+}
+
+module.exports = calculator;
+},{}],4:[function(require,module,exports){
 function modals() {
   let buttonsDesign  = document.getElementsByClassName('button-design'),
       overlayDesign  = document.querySelector('.popup-design'),
@@ -140,23 +148,11 @@ function modals() {
 }
 
 module.exports = modals;
-},{}],4:[function(require,module,exports){
+},{}],5:[function(require,module,exports){
 function portfolioFilter() {
 
   let portfolioMenu  = document.querySelector('ul.portfolio-menu'),
-      btnAll         = document.querySelector('li.all'),
-      btnLovers      = document.querySelector('li.lovers'),
-      btnChef        = document.querySelector('li.chef'),
-      btnGirl        = document.querySelector('li.girl'),
-      btnGuy         = document.querySelector('li.guy'),
-      btnGrandmother = document.querySelector('li.grandmother'),
-      btnGranddad    = document.querySelector('li.granddad'),
-
       worksAll       = document.getElementsByClassName('portfolio-block all'),
-      worksLovers    = document.getElementsByClassName('portfolio-block lovers'),
-      worksChef      = document.getElementsByClassName('portfolio-block chef'),
-      worksGirl      = document.getElementsByClassName('portfolio-block girl'),
-      worksGuy       = document.getElementsByClassName('portfolio-block guy'),
       worksNo        = document.querySelector('.portfolio-no');
 
   // Пробегаемся циклом по всем пунктам меню
@@ -175,6 +171,8 @@ function portfolioFilter() {
         }
       }
 
+      // Если выбрана вкладка с работами, то отображаются работы,
+      // если их нет, тогда отображаем надпись
       worksCount ? worksNo.style.display = 'none': worksNo.style.display = 'block';
 
       // Удаляем у всех пунктов меню класс active
@@ -182,67 +180,15 @@ function portfolioFilter() {
         portfolioMenu.children[k].classList.remove('active');
       }
 
+      // Добавляем нажатому класс active
       portfolioMenu.children[i].classList.add('active');
     });
   }
-
-
-/*
-  function filter(btn, blockClass) {
-    btn.addEventListener('click', function () {
-      for (var i = 0; i < allWorks.length; i++) {
-        if (allWorks[i].classList.contains(blockClass) == false) {
-          allWorks[i].style.display = 'none';
-        } else {
-          allWorks[i].style.display = 'block';
-        }
-      }
-
-      grandWorks.style.display = 'none';
-
-      for (var _i5 = 0; _i5 < allBtns.children.length; _i5++) {
-        allBtns.children[_i5].classList.remove('active');
-      }
-
-      btn.classList.add('active');
-    });
-  };
-  filter(allBtn, 'all');
-  filter(loversBtn, 'lovers');
-  filter(chefBtn, 'chef');
-  filter(girlBtn, 'girl');
-  filter(guyBtn, 'guy');
-
-  grandmotherBtn.addEventListener('click', function () {
-    for (var i = 0; i < allWorks.length; i++) {
-      allWorks[i].style.display = 'none';
-    };
-    grandWorks.style.display = 'block';
-
-    for (var _i6 = 0; _i6 < allBtns.children.length; _i6++) {
-      allBtns.children[_i6].classList.remove('active');
-    }
-
-    grandmotherBtn.classList.add('active');
-  });
-
-  granddadBtn.addEventListener('click', function () {
-    for (var i = 0; i < allWorks.length; i++) {
-      allWorks[i].style.display = 'none';
-    };
-    grandWorks.style.display = 'block';
-
-    for (var _i7 = 0; _i7 < allBtns.children.length; _i7++) {
-      allBtns.children[_i7].classList.remove('active');
-    }
-
-    granddadBtn.classList.add('active');
-  });*/
 }
 
 module.exports = portfolioFilter;
 
-},{}],5:[function(require,module,exports){
+},{}],6:[function(require,module,exports){
 function sizesHover() {
   let sizes = document.getElementsByClassName('sizes-block');
 
@@ -285,7 +231,7 @@ function sizesHover() {
 }
 
 module.exports = sizesHover;
-},{}],6:[function(require,module,exports){
+},{}],7:[function(require,module,exports){
 function sliderTop () {
   let slideIndex = 1,
       delay = 5000,
