@@ -922,6 +922,7 @@ h4 {
   margin-top: 30px;
   background-color: #f7e7e6;
   padding: 3rem 4rem;
+  z-index: 1;
 }
 .often-questions .accordion-block:before {
   content: '';
