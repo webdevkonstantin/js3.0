@@ -4,7 +4,8 @@ function blocksLoad() {
   var btn = document.querySelector('.button-styles'),
       blocks = document.getElementsByClassName('styles-block');
   btn.addEventListener('click', function (e) {
-    btn.remove();
+    // btn.remove();
+    btn.parentElement.removeChild(btn);
 
     for (var i = 0; i < blocks.length; i++) {
       if (blocks[i].parentElement.classList.contains('hidden-lg')) {

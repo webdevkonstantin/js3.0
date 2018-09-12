@@ -39,7 +39,8 @@ function modals() {
     if ( buttonGift !== null && clickCount === 0 &&
          (document.documentElement.scrollHeight - document.documentElement.scrollTop === document.documentElement.clientHeight) ) {
       showModal(overlayGift);
-      buttonGift.remove();
+      // buttonGift.remove();
+      buttonGift.parentElement.removeChild(buttonGift);
     }
   });
 
@@ -64,7 +65,8 @@ function modals() {
   //Нажатие на "Подарок"
   buttonGift.addEventListener('click', ()=>  {
     showModal(overlayGift);
-    buttonGift.remove();
+    // buttonGift.remove();
+    buttonGift.parentElement.removeChild(buttonGift);
   });
 
   closeModalByButton(closeGift, overlayGift);

@@ -42,8 +42,9 @@ function modals() {
     var buttonGift = document.querySelector('.fixed-gift');
 
     if (buttonGift !== null && clickCount === 0 && document.documentElement.scrollHeight - document.documentElement.scrollTop === document.documentElement.clientHeight) {
-      showModal(overlayGift);
-      buttonGift.remove();
+      showModal(overlayGift); // buttonGift.remove();
+
+      buttonGift.parentElement.removeChild(buttonGift);
     }
   }); // Проходимся циклом по всем кнопкам "Заказать..."
 
@@ -64,8 +65,9 @@ function modals() {
   //Нажатие на "Подарок"
 
   buttonGift.addEventListener('click', function () {
-    showModal(overlayGift);
-    buttonGift.remove();
+    showModal(overlayGift); // buttonGift.remove();
+
+    buttonGift.parentElement.removeChild(buttonGift);
   });
   closeModalByButton(closeGift, overlayGift);
   closeModalByOverlay(overlayGift); //-----------------------------------------------------------------------

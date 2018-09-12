@@ -619,7 +619,8 @@ function blocksLoad() {
   var btn = document.querySelector('.button-styles'),
       blocks = document.getElementsByClassName('styles-block');
   btn.addEventListener('click', function (e) {
-    btn.remove();
+    // btn.remove();
+    btn.parentElement.removeChild(btn);
 
     for (var i = 0; i < blocks.length; i++) {
       if (blocks[i].parentElement.classList.contains('hidden-lg')) {
@@ -823,7 +824,7 @@ function forms() {
       }
 
       for (var t = 0; t < textarea.length; t++) {
-        textarea[t].value = ''; //Очищаем поля ввода
+        textarea[t].value = '';
       }
     });
   }
@@ -879,8 +880,9 @@ function modals() {
     var buttonGift = document.querySelector('.fixed-gift');
 
     if (buttonGift !== null && clickCount === 0 && document.documentElement.scrollHeight - document.documentElement.scrollTop === document.documentElement.clientHeight) {
-      showModal(overlayGift);
-      buttonGift.remove();
+      showModal(overlayGift); // buttonGift.remove();
+
+      buttonGift.parentElement.removeChild(buttonGift);
     }
   }); // Проходимся циклом по всем кнопкам "Заказать..."
 
@@ -901,8 +903,9 @@ function modals() {
   //Нажатие на "Подарок"
 
   buttonGift.addEventListener('click', function () {
-    showModal(overlayGift);
-    buttonGift.remove();
+    showModal(overlayGift); // buttonGift.remove();
+
+    buttonGift.parentElement.removeChild(buttonGift);
   });
   closeModalByButton(closeGift, overlayGift);
   closeModalByOverlay(overlayGift); //-----------------------------------------------------------------------

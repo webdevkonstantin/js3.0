@@ -95,7 +95,6 @@ function forms () {
 
 			for (let t = 0; t < textarea.length; t++) {
 				textarea[t].value = '';
-				//Очищаем поля ввода
 			}
 
 		});

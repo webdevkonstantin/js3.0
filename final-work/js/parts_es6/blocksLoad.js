@@ -3,7 +3,8 @@ function blocksLoad() {
       blocks = document.getElementsByClassName('styles-block');
 
   btn.addEventListener('click', function (e) {
-    btn.remove();
+    // btn.remove();
+    btn.parentElement.removeChild(btn);
     for (let i = 0; i < blocks.length; i++) {
       if (blocks[i].parentElement.classList.contains('hidden-lg')) {
         blocks[i].parentElement.classList.remove('hidden-lg', 'hidden-md', 'hidden-sm', 'hidden-xs', 'styles-2');

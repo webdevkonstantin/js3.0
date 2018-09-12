@@ -97,7 +97,7 @@ function forms() {
       }
 
       for (var t = 0; t < textarea.length; t++) {
-        textarea[t].value = ''; //Очищаем поля ввода
+        textarea[t].value = '';
       }
     });
   }
