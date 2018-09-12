@@ -913,6 +913,7 @@ h4 {
   cursor: pointer;
   text-align: center;
   margin-bottom: 4rem;
+  z-index: 1;
 }
 .often-questions .accordion-heading span {
   border-bottom: 2px dotted #333;
