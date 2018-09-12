@@ -245,15 +245,15 @@
 						</div>
 						<select id=size required>
 							<option value="">Выберите размер картины</option>
-							<option value="1500">40x50</option>
-							<option value="2000">50x70</option>
-							<option value="3500">70x70</option>
-							<option value="4000">70x100</option>
+							<option value="2500">40x50</option>
+							<option value="3500">50x70</option>
+							<option value="4500">70x70</option>
+							<option value="5000">70x100</option>
 						</select>
 						<select id=material required>
 							<option value="">Выберите материал картины</option>
-							<option value="1"  title="Изящный, позволяет легко создавать текстуру, подходит для декоративных картин маслом.">Холст из волокна</option>
-							<option value="1.5"  title="Достаточно грубый и создает ощущение реальности, подходит для классических пейзажей, натюрмортов и портретов.">Льняной холст</option>
+							<option value="1" title="Изящный, позволяет легко создавать текстуру, подходит для декоративных картин маслом.">Холст из волокна</option>
+							<option value="1.5" title="Достаточно грубый и создает ощущение реальности, подходит для классических пейзажей, натюрмортов и портретов.">Льняной холст</option>
 							<option value="1.8" title="Изящный, подходит для всех типов реалистичных портретов.">Холст из натурального хлопка</option>
 						</select>
 						<select id=options>
@@ -508,11 +508,11 @@
 			<div class=feedback-slider style="position:relative; height: 400px;">
 				<button class="main-slider-btn main-prev-btn">
 					<img src="img/left-arr.png">
-				</button>'
+				</button>
 				<button class="main-slider-btn main-next-btn">
 					<img src="img/right-arr.png">
 				</button>
-				<div class=feedback-slider-item>
+				<div class="feedback-slider-item animated slideInRight">
 					<div class=col-sm-5>
 						<div class=feedback-block>
 							<img src=img/feedback-1.png alt>
@@ -525,7 +525,7 @@
 						<p class=feedback-signature><span>Олег Петров,</span> д. Месягутово</p>
 					</div>
 				</div>
-				<div class=feedback-slider-item>
+				<div class="feedback-slider-item animated slideInRight">
 					<div class=col-sm-5>
 						<div class=feedback-block>
 							<img src=img/feedback-2.jpg alt>
@@ -538,7 +538,7 @@
 						<p class=feedback-signature><span>Ирина Антонова,</span> г. Кисловодск</p>
 					</div>
 				</div>
-				<div class=feedback-slider-item>
+				<div class="feedback-slider-item animated slideInRight">
 					<div class=col-sm-5>
 						<div class=feedback-block>
 							<img src=img/feedback-3.jpg alt>
@@ -670,6 +670,7 @@
 			</div>
 		</div>
 	</footer>
+
 	<div class=popup-consultation>
 		<div class=popup-dialog>
 			<div class=popup-content>
@@ -691,7 +692,7 @@
 				<button class=popup-close>&times;</button>
 				<h2>У нас для вас есть подарок!</h2>
 				<img src="img/gift.png" alt="">
-				<p>Введите промо-код IWANTPOPART и получите скидку 30% на портрет любого размера в стиле pop-art!</p>
+				<p>Введите промо-код <span id="promocode">IWANTPOPART</span> и получите скидку 30% на портрет любого размера в стиле pop-art!</p>
 			</div>
 		</div>
 	</div>
@@ -719,8 +720,6 @@
 			</div>
 		</div>
 	</div>
-
-
 
 	<script src="js/bundle/bundle.js"></script>
 </body>

@@ -4,7 +4,7 @@ function calculator() {
       selectOptions = document.getElementById('options'),
       inputPromocode = document.querySelector('.promocode'),
       totalValue = document.querySelector('.calc-price'),
-      promocode = 'IWANTPOPART',
+      promocode = document.getElementById('promocode').innerText,
       discount = false,
       sizeSum = 0,
       materialSum = 0,

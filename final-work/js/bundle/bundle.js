@@ -6,6 +6,7 @@ window.addEventListener('DOMContentLoaded', function(e) {
   var blocksLoad = require('../parts/blocksLoad');
   var portfolioFilter = require('../parts/portfolioFilter');
   var calculator = require('../parts/calculator');
+  var sliderBottom = require('../parts/sliderBottom');
 
   sliderTop();
   modals();
@@ -13,8 +14,9 @@ window.addEventListener('DOMContentLoaded', function(e) {
   blocksLoad();
   portfolioFilter();
   calculator();
+  sliderBottom();
 });
-},{"../parts/blocksLoad":2,"../parts/calculator":3,"../parts/modals":4,"../parts/portfolioFilter":5,"../parts/sizesHover":6,"../parts/sliderTop":7}],2:[function(require,module,exports){
+},{"../parts/blocksLoad":2,"../parts/calculator":3,"../parts/modals":4,"../parts/portfolioFilter":5,"../parts/sizesHover":6,"../parts/sliderBottom":7,"../parts/sliderTop":8}],2:[function(require,module,exports){
 function blocksLoad() {
   let btn = document.querySelector('.button-styles'),
       blocks = document.getElementsByClassName('styles-block');
@@ -44,7 +46,7 @@ function calculator() {
       selectOptions = document.getElementById('options'),
       inputPromocode = document.querySelector('.promocode'),
       totalValue = document.querySelector('.calc-price'),
-      promocode = 'IWANTPOPART',
+      promocode = document.getElementById('promocode').innerText,
       discount = false,
       sizeSum = 0,
       materialSum = 0,
@@ -120,7 +122,9 @@ function modals() {
   // Проверяем сколько раз нажимали кнопки (кроме кнопок закрыть)
   for (let i = 0; i < allButtons.length; i++) {
     allButtons[i].addEventListener('click', ()=>  {
-      if (!allButtons[i].classList.contains('popup-close')) {
+      if (!allButtons[i].classList.contains('popup-close') &&
+          !allButtons[i].classList.contains('main-next-btn') &&
+          !allButtons[i].classList.contains('main-prev-btn')) {
         clickCount++;
         console.log('clickCount: ', clickCount);
       }
@@ -282,6 +286,52 @@ function sizesHover() {
 
 module.exports = sizesHover;
 },{}],7:[function(require,module,exports){
+function sliderBottom() {
+  let slideIndex = 1,
+      slides = document.getElementsByClassName('feedback-slider-item'),
+      prev = document.querySelector('.main-prev-btn'),
+      next = document.querySelector('.main-next-btn');
+
+  showSlides(slideIndex);
+
+  function showSlides (n) {
+    if (n > slides.length) slideIndex = 1;
+
+    if (n < 1) slideIndex = slides.length;
+
+    for (let i = 0; i < slides.length; i++) {
+      slides[i].style.display = 'none';
+    }
+
+    slides[slideIndex - 1].style.display = 'block';
+  }
+
+  function plusSlide (n) {
+    clearInterval(timerID);
+    showSlides(slideIndex += n);
+
+    timerID = setInterval(function () {
+      showSlides(slideIndex += 1);
+    }, 7000);
+  }
+
+
+  prev.addEventListener('click', () => {
+    plusSlide(-1);
+  });
+
+  next.addEventListener('click', () => {
+    plusSlide(1);
+  });
+
+  let timerID = setInterval(() => {
+    plusSlide(1);
+  }, 7000);
+}
+
+module.exports = sliderBottom;
+
+},{}],8:[function(require,module,exports){
 function sliderTop () {
   let slideIndex = 1,
       delay = 5000,

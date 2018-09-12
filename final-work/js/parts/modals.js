@@ -24,7 +24,9 @@ function modals() {
   // Проверяем сколько раз нажимали кнопки (кроме кнопок закрыть)
   for (let i = 0; i < allButtons.length; i++) {
     allButtons[i].addEventListener('click', ()=>  {
-      if (!allButtons[i].classList.contains('popup-close')) {
+      if (!allButtons[i].classList.contains('popup-close') &&
+          !allButtons[i].classList.contains('main-next-btn') &&
+          !allButtons[i].classList.contains('main-prev-btn')) {
         clickCount++;
         console.log('clickCount: ', clickCount);
       }
