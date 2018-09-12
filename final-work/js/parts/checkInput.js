@@ -1,1 +1,3 @@
-checkInput.js
+"use strict";
+
+checkInput.js;

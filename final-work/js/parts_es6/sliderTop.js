@@ -1,14 +1,13 @@
-"use strict";
-
-function sliderTop() {
-  var slideIndex = 1,
+function sliderTop () {
+  let slideIndex = 1,
       delay = 5000,
       lock = false,
       run,
       slides = document.getElementsByClassName('main-slider-item');
+
   showSlides(slideIndex);
 
-  function showSlides(n) {
+  function showSlides (n) {
     if (n > slides.length) {
       slideIndex = 1;
     }
@@ -17,34 +16,35 @@ function sliderTop() {
       slideIndex = slides.length;
     }
 
-    for (var i = 0; i < slides.length; i++) {
+    for (let i = 0; i < slides.length; i++) {
       slides[i].style.display = 'none';
     }
 
     slides[slideIndex - 1].style.display = 'block';
   }
 
-  function plusSlides(n) {
+  function plusSlides (n) {
     showSlides(slideIndex += n);
-  } // автоматическое пролистывание изображений
+  }
 
-
+  // автоматическое пролистывание изображений
   function autoSlide() {
     if (lock === true) {
       lock = false;
       window.clearInterval(run);
-    } else if (lock === false) {
+    }
+    else if (lock === false) {
       lock = true;
-      run = setInterval(function () {
-        plusSlides(1);
+      run = setInterval(()=>  {
+        plusSlides (1);
       }, delay);
     }
   }
+  autoSlide();
 
-  autoSlide(); // по нажатию на изображение можем остановить слайдшоу
-
-  for (var i = 0; i < slides.length; i++) {
-    slides[i].addEventListener('click', function () {
+  // по нажатию на изображение можем остановить слайдшоу
+  for (let i = 0; i < slides.length; i++) {
+    slides[i].addEventListener('click', ()=> {
       autoSlide();
     });
   }
