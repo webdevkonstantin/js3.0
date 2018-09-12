@@ -75,12 +75,10 @@ function calculator() {
     if (sizeSum !== 0 && materialSum !== 0) {
       total = sizeSum * materialSum + optionsSum;
 
-      if (discount) {
-        total = total * 0.7;
-      }
+      if (discount) total = total * 0.7;
 
       total = Math.round(total);
-      totalValue.innerHTML = "<h3>" + total + "</h3>";
+      totalValue.innerHTML = "<h3>" + total + "р.</h3>";
     } else if (sizeSum === 0 && materialSum !== 0) {
       total = 0;
       totalValue.innerHTML = 'Для расчета нужно выбрать размер картины';
