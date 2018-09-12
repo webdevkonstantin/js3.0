@@ -6,6 +6,7 @@ window.addEventListener('DOMContentLoaded', function(e) {
   var blocksLoad = require('../parts/blocksLoad');
   var portfolioFilter = require('../parts/portfolioFilter');
   var calculator = require('../parts/calculator');
+  var accordion = require('../parts/accordion');
 
   sliderTop();
   sliderBottom();
@@ -14,4 +15,5 @@ window.addEventListener('DOMContentLoaded', function(e) {
   blocksLoad();
   portfolioFilter();
   calculator();
+  accordion();
 });

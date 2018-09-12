@@ -1,22 +1,71 @@
 (function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(require,module,exports){
 window.addEventListener('DOMContentLoaded', function(e) {
   var sliderTop = require('../parts/sliderTop');
+  var sliderBottom = require('../parts/sliderBottom');
   var modals    = require('../parts/modals');
   var sizesHover = require('../parts/sizesHover');
   var blocksLoad = require('../parts/blocksLoad');
   var portfolioFilter = require('../parts/portfolioFilter');
   var calculator = require('../parts/calculator');
-  var sliderBottom = require('../parts/sliderBottom');
+  var accordion = require('../parts/accordion');
 
   sliderTop();
+  sliderBottom();
   modals();
   sizesHover();
   blocksLoad();
   portfolioFilter();
   calculator();
-  sliderBottom();
+  accordion();
 });
-},{"../parts/blocksLoad":2,"../parts/calculator":3,"../parts/modals":4,"../parts/portfolioFilter":5,"../parts/sizesHover":6,"../parts/sliderBottom":7,"../parts/sliderTop":8}],2:[function(require,module,exports){
+},{"../parts/accordion":2,"../parts/blocksLoad":3,"../parts/calculator":4,"../parts/modals":5,"../parts/portfolioFilter":6,"../parts/sizesHover":7,"../parts/sliderBottom":8,"../parts/sliderTop":9}],2:[function(require,module,exports){
+function accordion() {
+  let accordion = document.getElementById('accordion'),
+      underline = accordion.getElementsByTagName('span'),
+      heading = accordion.getElementsByClassName('accordion-heading'),
+      block = accordion.getElementsByClassName('accordion-block'),
+      otherBlock = 0;
+
+  for (let i = 0; i < block.length; i++) {
+    block[i].classList.add('animated');
+    block[i].classList.add('ui-accordion-content-active');
+    if (i !== 0) {
+      block[i].style.display = 'none';
+    } else {
+      heading[i].classList.add('ui-accordion-header-active');
+    }
+  }
+
+  accordion.addEventListener('click', (e)=> {
+    block[otherBlock].classList.add('fade-out');
+    setTimeout(function () {
+      for (let k = 0; k < underline.length; k++) {
+        if (e.target === underline[k]) {
+          if (heading[k].classList.contains('ui-accordion-header-active')) {
+            clearBlock();
+            break;
+          }
+          clearBlock();
+          heading[k].classList.add('ui-accordion-header-active');
+          block[k].classList.remove('fade-out');
+          block[k].classList.add('fade-in');
+          block[k].style.display = 'block';
+        }
+      }
+    }, 200);
+  });
+
+  function clearBlock() {
+    for (let j = 0; j < block.length; j++) {
+      heading[j].classList.remove('ui-accordion-header-active');
+      block[j].style.display = 'none';
+    }
+  }
+
+}
+
+module.exports = accordion;
+},{}],3:[function(require,module,exports){
 function blocksLoad() {
   let btn = document.querySelector('.button-styles'),
       blocks = document.getElementsByClassName('styles-block');
@@ -39,7 +88,7 @@ function blocksLoad() {
 }
 
 module.exports = blocksLoad;
-},{}],3:[function(require,module,exports){
+},{}],4:[function(require,module,exports){
 function calculator() {
   let selectSize = document.getElementById('size'),
       selectMaterial = document.getElementById('material'),
@@ -95,7 +144,7 @@ function calculator() {
 }
 
 module.exports = calculator;
-},{}],4:[function(require,module,exports){
+},{}],5:[function(require,module,exports){
 function modals() {
   let buttonsDesign  = document.getElementsByClassName('button-design'),
       overlayDesign  = document.querySelector('.popup-design'),
@@ -202,7 +251,7 @@ function modals() {
 }
 
 module.exports = modals;
-},{}],5:[function(require,module,exports){
+},{}],6:[function(require,module,exports){
 function portfolioFilter() {
 
   let portfolioMenu  = document.querySelector('ul.portfolio-menu'),
@@ -242,7 +291,7 @@ function portfolioFilter() {
 
 module.exports = portfolioFilter;
 
-},{}],6:[function(require,module,exports){
+},{}],7:[function(require,module,exports){
 function sizesHover() {
   let sizes = document.getElementsByClassName('sizes-block');
 
@@ -285,7 +334,7 @@ function sizesHover() {
 }
 
 module.exports = sizesHover;
-},{}],7:[function(require,module,exports){
+},{}],8:[function(require,module,exports){
 function sliderBottom() {
   let slideIndex = 1,
       slides = document.getElementsByClassName('feedback-slider-item'),
@@ -310,7 +359,7 @@ function sliderBottom() {
     clearInterval(timerID);
     showSlides(slideIndex += n);
 
-    timerID = setInterval(function () {
+    timerID = setInterval(() => {
       showSlides(slideIndex += 1);
     }, 7000);
   }
@@ -331,7 +380,7 @@ function sliderBottom() {
 
 module.exports = sliderBottom;
 
-},{}],8:[function(require,module,exports){
+},{}],9:[function(require,module,exports){
 function sliderTop () {
   let slideIndex = 1,
       delay = 5000,

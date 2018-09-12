@@ -60,7 +60,8 @@ h4 {
   font-family: 'Circe Extra Bold', sans-serif;
 }
 .p15 {
-  font-size: 1.5;
+  /*font-size: 1.5;*/
+  font-size: 1.5rem;
 }
 .p-heading {
   font-size: 2.2rem;
@@ -916,7 +917,8 @@ h4 {
   border-bottom: 2px dotted #333;
 }
 .often-questions .accordion-block {
-  margin-top: 6rem;
+  /*margin-top: 6rem;*/
+  margin-top: 30px;
   background-color: #f7e7e6;
   padding: 3rem 4rem;
 }
@@ -1588,7 +1590,8 @@ h4 {
     font-size: 1.5rem;
   }
   .main-features {
-    max-width: auto;
+    /*max-width: auto;*/
+    width: auto;
     margin-left: 20%;
   }
   .main-slider-btn {
@@ -1741,4 +1744,60 @@ h4 {
 
 .main .row:last-child {
   overflow: hidden;
+}
+
+.fade-in {
+  -webkit-animation-name: fade-in;
+  animation-name: fade-in;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+}
+
+@-webkit-keyframes fade-in {
+  from {
+    opacity: 0.1;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0.1;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.fade-out {
+  -webkit-animation-name: fade-out;
+  animation-name: fade-out;
+  -webkit-animation-duration: 0.4s;
+  animation-duration: 0.4s;
+}
+
+@-webkit-keyframes fade-out {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0.1;
+  }
+}
+
+@keyframes fade-out {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0.1;
+  }
 }
