@@ -611,6 +611,17 @@ h4 {
   right: 2px;
   background-size: 100%;
 }
+
+.calc #proportional {
+  opacity: 0.6;
+  font-family: 'Circe Extra Bold', sans-serif;
+  margin-left: 4rem;
+  border: none;
+  display: block;
+  font-size: 1.9rem;
+  padding: 1rem 0;
+}
+
 .portfolio {
   padding-top: 8rem;
 }
