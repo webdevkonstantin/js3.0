@@ -59,6 +59,23 @@ h3,
 h4 {
   font-family: 'Circe Extra Bold', sans-serif;
 }
+
+input:focus::-webkit-input-placeholder, textarea:focus::-webkit-input-placeholder {
+  color: transparent;
+}
+
+input:focus:-ms-input-placeholder, textarea:focus:-ms-input-placeholder {
+  color: transparent;
+}
+
+input:focus::-ms-input-placeholder, textarea:focus::-ms-input-placeholder {
+  color: transparent;
+}
+
+input:focus::placeholder, textarea:focus::placeholder {
+  color: transparent;
+}
+
 .p15 {
   /*font-size: 1.5;*/
   font-size: 1.5rem;

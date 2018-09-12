@@ -8,6 +8,7 @@ window.addEventListener('DOMContentLoaded', function(e) {
   var calculator = require('../parts/calculator');
   var accordion = require('../parts/accordion');
   var burgerMenu = require('../parts/burgerMenu');
+  var forms = require('../parts/forms');
 
   sliderTop();
   sliderBottom();
@@ -18,4 +19,5 @@ window.addEventListener('DOMContentLoaded', function(e) {
   calculator();
   accordion();
   burgerMenu();
+  forms();
 });
