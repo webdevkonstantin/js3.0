@@ -22,7 +22,7 @@ function sliderBottom() {
     clearInterval(timerID);
     showSlides(slideIndex += n);
 
-    timerID = setInterval(function () {
+    timerID = setInterval(() => {
       showSlides(slideIndex += 1);
     }, 7000);
   }
