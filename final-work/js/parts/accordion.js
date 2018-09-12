@@ -40,7 +40,6 @@ function accordion() {
       block[j].style.display = 'none';
     }
   }
-
 }
 
 module.exports = accordion;

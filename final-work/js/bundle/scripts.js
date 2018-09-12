@@ -7,6 +7,7 @@ window.addEventListener('DOMContentLoaded', function(e) {
   var portfolioFilter = require('../parts/portfolioFilter');
   var calculator = require('../parts/calculator');
   var accordion = require('../parts/accordion');
+  var burgerMenu = require('../parts/burgerMenu');
 
   sliderTop();
   sliderBottom();
@@ -16,4 +17,5 @@ window.addEventListener('DOMContentLoaded', function(e) {
   portfolioFilter();
   calculator();
   accordion();
+  burgerMenu();
 });

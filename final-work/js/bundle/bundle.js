@@ -8,6 +8,7 @@ window.addEventListener('DOMContentLoaded', function(e) {
   var portfolioFilter = require('../parts/portfolioFilter');
   var calculator = require('../parts/calculator');
   var accordion = require('../parts/accordion');
+  var burgerMenu = require('../parts/burgerMenu');
 
   sliderTop();
   sliderBottom();
@@ -17,8 +18,9 @@ window.addEventListener('DOMContentLoaded', function(e) {
   portfolioFilter();
   calculator();
   accordion();
+  burgerMenu();
 });
-},{"../parts/accordion":2,"../parts/blocksLoad":3,"../parts/calculator":4,"../parts/modals":5,"../parts/portfolioFilter":6,"../parts/sizesHover":7,"../parts/sliderBottom":8,"../parts/sliderTop":9}],2:[function(require,module,exports){
+},{"../parts/accordion":2,"../parts/blocksLoad":3,"../parts/burgerMenu":4,"../parts/calculator":5,"../parts/modals":6,"../parts/portfolioFilter":7,"../parts/sizesHover":8,"../parts/sliderBottom":9,"../parts/sliderTop":10}],2:[function(require,module,exports){
 function accordion() {
   let accordion = document.getElementById('accordion'),
       underline = accordion.getElementsByTagName('span'),
@@ -71,24 +73,67 @@ function blocksLoad() {
       blocks = document.getElementsByClassName('styles-block');
 
   btn.addEventListener('click', function (e) {
+    btn.remove();
     for (let i = 0; i < blocks.length; i++) {
       if (blocks[i].parentElement.classList.contains('hidden-lg')) {
         blocks[i].parentElement.classList.remove('hidden-lg', 'hidden-md', 'hidden-sm', 'hidden-xs', 'styles-2');
         blocks[i].parentElement.classList.add('col-sm-3', 'col-sm-offset-0', 'col-xs-10', 'col-xs-offset-1', 'animated', 'fadeIn');
       }
-
-      btn.classList.add('animated', 'fadeOut');
-
-      // Удаляем кнопку через 0.5 сек
-      setTimeout(function methodName() {
-        btn.remove();
-      }, 500);
     }
   });
 }
 
 module.exports = blocksLoad;
 },{}],4:[function(require,module,exports){
+function burgerMenu() {
+  let burgerButton = document.getElementsByClassName('burger')[0],
+      burgerMenu = document.getElementsByClassName('burger-menu')[0],
+      headerMenu = document.getElementsByClassName('header-menu')[0],
+      burgerButtonImg = burgerButton.getElementsByTagName('img')[0],
+      burgerButtonSpan = burgerButton.getElementsByTagName('span')[0];
+
+  console.log('burgerButton: ', burgerButton);
+  console.log('burgerMenuMain: ', burgerMenu);
+  console.log('headerMenu: ', headerMenu);
+  console.log('burgerButtonImg: ', burgerButtonImg);
+  console.log('burgerButtonSpan: ', burgerButtonSpan);
+
+  window.addEventListener('resize', function () {
+    if (this.innerWidth <= 768) {
+      headerMenu.style.display = 'none';
+    } else {
+      headerMenu.style.display = 'block';
+    }
+  });
+
+  burgerMenu.style.display = 'none';
+  burgerButton.style.display = 'block';
+  headerMenu.style.display = 'block';
+
+  document.body.addEventListener('click', function (event) {
+    showMenuBurger(event);
+  });
+
+  document.body.addEventListener('tap', function (event) {
+    showMenuBurger(event);
+  });
+
+  function showMenuBurger(event) {
+    if (event.target === burgerButton || event.target === burgerButtonImg || event.target === burgerButtonSpan) {
+      if (burgerMenu.style.display === 'none') {
+        burgerMenu.style.display = 'block';
+      } else if (burgerMenu.style.display === 'block') {
+        burgerMenu.style.display = 'none';
+      }
+    } else {
+      burgerMenu.style.display = 'none';
+    }
+  }
+
+}
+
+module.exports = burgerMenu;
+},{}],5:[function(require,module,exports){
 function calculator() {
   let selectSize = document.getElementById('size'),
       selectMaterial = document.getElementById('material'),
@@ -144,7 +189,7 @@ function calculator() {
 }
 
 module.exports = calculator;
-},{}],5:[function(require,module,exports){
+},{}],6:[function(require,module,exports){
 function modals() {
   let buttonsDesign  = document.getElementsByClassName('button-design'),
       overlayDesign  = document.querySelector('.popup-design'),
@@ -251,7 +296,7 @@ function modals() {
 }
 
 module.exports = modals;
-},{}],6:[function(require,module,exports){
+},{}],7:[function(require,module,exports){
 function portfolioFilter() {
 
   let portfolioMenu  = document.querySelector('ul.portfolio-menu'),
@@ -291,7 +336,7 @@ function portfolioFilter() {
 
 module.exports = portfolioFilter;
 
-},{}],7:[function(require,module,exports){
+},{}],8:[function(require,module,exports){
 function sizesHover() {
   let sizes = document.getElementsByClassName('sizes-block');
 
@@ -334,7 +379,7 @@ function sizesHover() {
 }
 
 module.exports = sizesHover;
-},{}],8:[function(require,module,exports){
+},{}],9:[function(require,module,exports){
 function sliderBottom() {
   let slideIndex = 1,
       slides = document.getElementsByClassName('feedback-slider-item'),
@@ -380,7 +425,7 @@ function sliderBottom() {
 
 module.exports = sliderBottom;
 
-},{}],9:[function(require,module,exports){
+},{}],10:[function(require,module,exports){
 function sliderTop () {
   let slideIndex = 1,
       delay = 5000,

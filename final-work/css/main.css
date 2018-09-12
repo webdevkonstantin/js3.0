@@ -851,6 +851,7 @@ h4 {
 .feedback {
   background-color: #f7e7e6;
   padding: 9rem 0;
+  overflow: hidden;
 }
 .feedback-slider-item {
   padding-bottom: 5rem;
@@ -1493,7 +1494,7 @@ h4 {
   }
   .calc select {
     position: relative;
-    left: 30%;
+    /*left: 30%;*/
   }
   .calc .button-transparent {
     margin: 4rem auto;
