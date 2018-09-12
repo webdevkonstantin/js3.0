@@ -95,8 +95,8 @@ function modals() {
   }
 
   function closeModalByOverlay(overlay) {
-    overlay.addEventListener('click', (event)=> {
-      if (event.target.closest('.popup-content') === null) {
+    overlay.addEventListener('click', function(event) {
+      if (this == event.target) {
         popupOpened = false;
         overlay.style.display = 'none';
         document.body.style.overflow = '';

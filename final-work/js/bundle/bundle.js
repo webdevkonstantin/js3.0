@@ -744,10 +744,18 @@ function forms() {
     },
         form = document.getElementsByTagName('form')[index],
         input = form.getElementsByTagName('input'),
-        textarea = form.getElementsByTagName('textarea'),
+        textarea = form.getElementsByTagName('textarea')[0],
         statusMsg = document.createElement('div');
     statusMsg.classList.add('status');
     statusMsg.style.cssText = styleText;
+
+    if (textarea) {
+      textarea.addEventListener('input', function () {
+        if (this.name == 'message') {
+          return this.value = this.value.replace(/[A-Za-z]/g, '');
+        }
+      });
+    }
 
     for (var i = 0; i < input.length; i++) {
       input[i].addEventListener('input', function () {
@@ -933,7 +941,7 @@ function modals() {
 
   function closeModalByOverlay(overlay) {
     overlay.addEventListener('click', function (event) {
-      if (event.target.closest('.popup-content') === null) {
+      if (this == event.target) {
         popupOpened = false;
         overlay.style.display = 'none';
         document.body.style.overflow = '';
